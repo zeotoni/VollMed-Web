@@ -1,0 +1,25 @@
+@import 'assets/scss/_base.scss';
+
+button {
+  border-radius: 8px;
+  font-size: $fs-2;
+  font-weight: $fw-2;
+  padding: 12px 16px;
+  width: 100%;
+  border: none;
+  background-color: $primary-white;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.primary {
+    background-color: $primary-blue;
+    color: $primary-white;
+  }
+
+  &.secondary {
+    border: 2px solid $primary-blue;
+    color: $primary-blue;
+  }
+}
