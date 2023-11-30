@@ -1,0 +1,19 @@
+<header>
+  <div class="title-group">
+    <img src="assets/images/Voltar.svg" alt="icone de seta" />
+    <p>{{ headerTitle }}</p>
+  </div>
+  <img
+    src="assets/images/Frame 2.svg"
+    alt="icone de menu"
+    (click)="showSelect()"
+    (keyup)="showSelect()"
+    [attr.aria-hidden]="true" />
+</header>
+<ng-container>
+  <select>
+    <option value="Médicos">Médicos</option>
+    <option value="Pacientes">Pacientes</option>
+    <option value="Consultas">Consultas</option>
+  </select>
+</ng-container>
