@@ -1,0 +1,85 @@
+@import 'assets/scss/_base.scss';
+
+form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    legend {
+      margin-bottom: 10px;
+      color: $primary-blue;
+      font-size: $fs-3;
+      font-style: normal;
+      font-weight: $fw-2;
+      line-height: 21.9px;
+    }
+
+    input,
+    select {
+      border-radius: 5px;
+      border: 1px solid $secondary-gray;
+      padding: 14px 16px;
+      background-color: $primary-white;
+      font-size: $fs-2;
+      font-style: normal;
+      font-weight: $fw-1;
+      line-height: 19.4px;
+
+      &::placeholder {
+        color: $primary-black;
+        font-size: $fs-2;
+        font-style: normal;
+        font-weight: $fw-1;
+        line-height: 19.4px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      & option {
+        color: $primary-black;
+        font-size: $fs-2;
+        font-style: normal;
+        font-weight: $fw-1;
+        line-height: 19.4px;
+      }
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: transparent;
+      background: url('../../../assets/images/Dropdown.svg');
+      background-repeat: no-repeat;
+      background-position-x: 95%;
+      background-position-y: 50%;
+    }
+
+    & .container-input {
+      display: flex;
+      justify-content: space-between;
+
+      & > * {
+        width: 48%;
+      }
+    }
+
+  }
+
+  & .container-button {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,47 @@
+<form>
+  <fieldset>
+    <legend>Profissional</legend>
+    <input type="text" placeholder="Nome Completo" />
+    <div class="container-input">
+      <select>
+        <option value="">Especialidade</option>
+        <option *ngFor="let item of specialties" value="{{ item }}">
+          {{ item }}
+        </option>
+      </select>
+      <input type="number" placeholder="CRM" />
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Contatos</legend>
+    <input type="email" placeholder="E-mail" />
+    <input type="tel" placeholder="Telefone ou Celular" />
+  </fieldset>
+
+  <fieldset>
+    <legend>Endereço</legend>
+    <input type="text" placeholder="Logradouro" />
+    <div class="container-input">
+      <input type="number" placeholder="Número" />
+      <input type="text" placeholder="Complemento" />
+    </div>
+
+    <input type="text" placeholder="Cidade" />
+
+    <div class="container-input">
+      <select>
+        <option value="">UF</option>
+        <option *ngFor="let item of states" value="{{ item }}">
+          {{ item }}
+        </option>
+      </select>
+      <input type="number" placeholder="CEP" />
+    </div>
+  </fieldset>
+
+  <div class="container-button">
+    <app-button text="{{ btnText }}"></app-button>
+    <app-button text="Cancelar" [style]="'secondary'"></app-button>
+  </div>
+</form>
