@@ -6,11 +6,10 @@ header {
   display: flex;
   justify-content: space-between;
   color: $primary-white;
-  color: var(--pb-white, #FFF);
+  color: var(--pb-white, #fff);
   font-size: $fs-3;
   font-weight: $fw-1;
   line-height: 21.9px;
-
 
   & .title-group {
     display: flex;
