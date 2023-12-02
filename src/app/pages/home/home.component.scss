@@ -1,0 +1,49 @@
+@import 'assets/scss/_base.scss';
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  & .container-logo {
+    padding-top: 38px;
+  }
+
+  h1 {
+    color: $primary-blue;
+    font-size: $fs-4;
+    font-style: normal;
+    font-weight: $fw-2;
+    line-height: 19.4px;
+    padding-top: 8px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    p {
+      color: $primary-black;
+      font-size: $fs-2;
+      font-style: normal;
+      font-weight: $fw-1;
+      line-height: 19.4px;
+    }
+
+    li {
+      background-color: $primary-blue;
+      border-radius: 10px;
+      text-align: center;
+      padding: 24px 18px;
+
+      p {
+        color: $primary-white;
+        font-size: $fs-3;
+        font-weight: $fw-2;
+        padding-top: 10px;
+      }
+    }
+  }
+
+}
