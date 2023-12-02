@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './pages/home/home.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, EditComponent],
   imports: [BrowserModule, AppRoutingModule, RouterModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
