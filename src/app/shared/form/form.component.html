@@ -1,43 +1,49 @@
 <app-container>
-  <form>
+  <form [formGroup]="signUpForm" (submit)="dataSignUp()">
     <fieldset>
       <legend>Profissional</legend>
-      <input type="text" placeholder="Nome Completo" />
+      <input formControlName="nome" type="text" placeholder="Nome Completo" />
       <div class="container-input">
-        <select>
+        <select formControlName="especialidade">
           <option value="">Especialidade</option>
           <option *ngFor="let item of specialties" value="{{ item }}">
-            {{ item }}
+            {{ item | uppercase }}
           </option>
         </select>
-        <input type="number" placeholder="CRM" />
+        <input formControlName="crm" type="number" placeholder="CRM" />
       </div>
     </fieldset>
 
     <fieldset>
       <legend>Contatos</legend>
-      <input type="email" placeholder="E-mail" />
-      <input type="tel" placeholder="Telefone ou Celular" />
+      <input formControlName="email" type="email" placeholder="E-mail" />
+      <input
+        formControlName="phone"
+        type="tel"
+        placeholder="Telefone ou Celular" />
     </fieldset>
 
     <fieldset>
       <legend>Endereço</legend>
-      <input type="text" placeholder="Logradouro" />
+      <input formControlName="rua" type="text" placeholder="Logradouro" />
       <div class="container-input">
-        <input type="number" placeholder="Número" />
-        <input type="text" placeholder="Complemento" />
+        <input formControlName="numero" type="number" placeholder="Número" />
+        <input
+          formControlName="complemento"
+          type="text"
+          placeholder="Complemento" />
       </div>
 
-      <input type="text" placeholder="Cidade" />
+      <input formControlName="cidade" type="text" placeholder="Cidade" />
 
       <div class="container-input">
-        <select>
+        <select formControlName="estado">
           <option value="">UF</option>
           <option *ngFor="let item of states" value="{{ item }}">
             {{ item }}
           </option>
         </select>
-        <input type="number" placeholder="CEP" />
+        <input formControlName="cep" type="number" placeholder="CEP" />
       </div>
     </fieldset>
 
