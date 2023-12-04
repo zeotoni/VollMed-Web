@@ -1,9 +1,8 @@
 @import 'assets/scss/_base.scss';
 
 form {
-  width: 100%;
+  padding: 20px 0;
   margin: 0 auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -12,6 +11,7 @@ form {
     border: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
 
     legend {
@@ -33,6 +33,7 @@ form {
       font-style: normal;
       font-weight: $fw-1;
       line-height: 19.4px;
+      width: 100%;
 
       &::placeholder {
         color: $primary-black;
@@ -68,10 +69,11 @@ form {
 
     & .container-input {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 4%;
 
       & > * {
-        width: 48%;
+        width: 50%;
       }
     }
   }
