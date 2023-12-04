@@ -1,0 +1,8 @@
+@import 'assets/scss/_base.scss';
+
+.error-message {
+  color: $red-warning;
+  font-size: $fs-1;
+  display: block;
+  padding: 8px 0 16px;
+}

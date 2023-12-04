@@ -6,6 +6,7 @@ import { ButtonComponent } from './button/button.component';
 import { ContainerComponent } from './container/container.component';
 import { FormComponent } from './form/form.component';
 import { HeaderComponent } from './header/header.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
     ContainerComponent,
     HeaderComponent,
     FormComponent,
+    ErrorMessageComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
