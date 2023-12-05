@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
     this.signUpForm = new FormBuilder().group({
       nome: ['', [Validators.required]],
       especialidade: ['', [Validators.required]],
-      crm: ['', [Validators.required, Validators.pattern(/d{4,6}/)]],
+      crm: ['', [Validators.required, Validators.pattern(/^\d{4,6}$/)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.maxLength(11)]],
       rua: ['', [Validators.required]],
@@ -59,7 +59,7 @@ export class FormComponent implements OnInit {
       complemento: [''],
       cidade: ['', [Validators.required]],
       estado: ['', [Validators.required]],
-      cep: ['', [Validators.required, Validators.pattern(/\d{8}/)]],
+      cep: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
     });
   }
 
