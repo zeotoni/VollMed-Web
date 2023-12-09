@@ -133,8 +133,11 @@
     </fieldset>
 
     <div class="container-button">
-      <app-button text="{{ btnText }}"></app-button>
-      <app-button text="Cancelar" [style]="'secondary'"></app-button>
+      <app-button
+        [style]="btnState()"
+        [disabled]="!signUpForm.valid"
+        text="{{ btnText }}"></app-button>
+      <app-button [style]="'secondary'" text="Cancelar"></app-button>
     </div>
   </form>
 </app-container>

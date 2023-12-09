@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
   @Input() btnText!: string;
+
   signUpForm!: FormGroup;
 
   states = [
@@ -65,5 +66,9 @@ export class FormComponent implements OnInit {
 
   dataSignUp() {
     console.log(this.signUpForm.value);
+  }
+
+  btnState() {
+    return this.signUpForm.valid ? 'primary' : 'disabled';
   }
 }

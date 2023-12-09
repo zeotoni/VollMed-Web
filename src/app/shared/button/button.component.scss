@@ -22,4 +22,9 @@ button {
     border: 2px solid $primary-blue;
     color: $primary-blue;
   }
+
+  &.disabled {
+    background-color: $secondary-gray;
+    color: $primary-white
+  };
 }
