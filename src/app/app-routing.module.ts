@@ -23,6 +23,11 @@ const routes: Routes = [
     component: SignUpComponent,
     title: 'Cadastrar',
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
