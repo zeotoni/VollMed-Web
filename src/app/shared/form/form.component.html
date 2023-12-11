@@ -15,7 +15,7 @@
           <select formControlName="especialidade">
             <option value="">Especialidade</option>
             <option *ngFor="let item of specialties" value="{{ item }}">
-              {{ item | uppercase }}
+              {{ item }}
             </option>
           </select>
           <app-error-message
@@ -61,24 +61,27 @@
         text="Formato de email inválido"></app-error-message>
 
       <input
-        formControlName="phone"
+        formControlName="telefone"
         type="tel"
         placeholder="Telefone ou Celular" />
       <app-error-message
         *ngIf="
-          signUpForm.get('phone')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('phone')?.touched)
+          signUpForm.get('telefone')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('telefone')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
     </fieldset>
 
     <fieldset>
       <legend>Endereço</legend>
-      <input formControlName="rua" type="text" placeholder="Logradouro" />
+      <input
+        formControlName="logradouro"
+        type="text"
+        placeholder="Logradouro" />
       <app-error-message
         *ngIf="
-          signUpForm.get('rua')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('rua')?.touched)
+          signUpForm.get('logradouro')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('logradouro')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
 
@@ -100,7 +103,7 @@
 
       <div class="container-input">
         <div>
-          <select formControlName="estado">
+          <select formControlName="uf">
             <option value="">UF</option>
             <option *ngFor="let item of states" value="{{ item }}">
               {{ item }}
@@ -108,8 +111,8 @@
           </select>
           <app-error-message
             *ngIf="
-              signUpForm.get('estado')?.errors?.['required'] &&
-              (form.submitted || signUpForm.get('estado')?.touched)
+              signUpForm.get('uf')?.errors?.['required'] &&
+              (form.submitted || signUpForm.get('uf')?.touched)
             "
             text="Campo obrigatório"></app-error-message>
         </div>
