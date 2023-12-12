@@ -1,0 +1,127 @@
+@import 'assets/scss/_base.scss';
+
+section {
+
+  padding: 32px 0;
+
+  input {
+    border-radius: 5px;
+    border: 1px solid $secondary-gray;
+    padding: 14px 16px;
+    background-color: $primary-white;
+    font-size: $fs-2;
+    font-style: normal;
+    font-weight: $fw-1;
+    line-height: 19.4px;
+    width: 100%;
+    background-image: url("assets/images/lupa.svg");
+    background-repeat: no-repeat;
+    background-position: 98%;
+
+    &::placeholder {
+      color: $primary-black;
+      font-size: $fs-2;
+      font-style: normal;
+      font-weight: $fw-1;
+      line-height: 19.4px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  .list {
+    padding: 32px 0 90px;
+
+    .cards {
+      padding-bottom: 32px;
+
+      &__header {
+        span {
+          font-size: $fs-3;
+          font-weight: $fw-2;
+          line-height: 21.9px;
+          margin-right: 10px;
+          color: $blue-logo;
+        }
+      }
+
+      & .card {
+        padding: 5px 8px;
+
+        details[open] summary::after {
+          content: " \25b2"; /* Símbolo de seta para baixo */
+        }
+
+        details:not([open]) summary::after {
+          content: " \25bc"; /* Símbolo de seta para a direita */
+        }
+
+        details {
+          summary{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 5px;
+            cursor: pointer;
+
+            h3 {
+              font-size: $fs-2;
+              font-weight: $fw-1;
+              color: $primary-blue;
+            }
+
+            p {
+              font-size: $fs-1;
+              font-weight: $fw-1;
+              color: $font-gray;
+            }
+          }
+          border-bottom: 1px solid $secondary-gray;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: $fs-1;
+            font-weight: $fw-1;
+            color: $font-gray;
+
+            div.button {
+              display: flex;
+              flex-direction: row;
+              gap: 8px;
+              padding: 14px 0;
+
+              button{
+                border: 1px solid $primary-blue;
+                border-radius: 8px;
+                background-color: $primary-white;
+                color: $primary-blue;
+                width: 50%;
+                padding: 5px 0;
+                font-size: $fs-2;
+                font-weight: $fw-1;
+              }
+
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+    left: 0;
+    padding: 20px 16px;
+    box-shadow: 0px -4px 8px 0px $box-shadow-gray;
+  }
+
+}
