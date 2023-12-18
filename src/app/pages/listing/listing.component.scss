@@ -1,7 +1,6 @@
 @import 'assets/scss/_base.scss';
 
 section {
-
   padding: 32px 0;
 
   input {
@@ -14,7 +13,7 @@ section {
     font-weight: $fw-1;
     line-height: 19.4px;
     width: 100%;
-    background-image: url("assets/images/lupa.svg");
+    background-image: url('assets/images/lupa.svg');
     background-repeat: no-repeat;
     background-position: 98%;
 
@@ -29,7 +28,6 @@ section {
     &:focus {
       outline: none;
     }
-
   }
 
   .list {
@@ -52,15 +50,15 @@ section {
         padding: 5px 8px;
 
         details[open] summary::after {
-          content: " \25b2"; /* Símbolo de seta para baixo */
+          content: ' \25b2'; /* Símbolo de seta para baixo */
         }
 
         details:not([open]) summary::after {
-          content: " \25bc"; /* Símbolo de seta para a direita */
+          content: ' \25bc'; /* Símbolo de seta para a direita */
         }
 
         details {
-          summary{
+          summary {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -95,7 +93,7 @@ section {
               gap: 8px;
               padding: 14px 0;
 
-              button{
+              button {
                 border: 1px solid $primary-blue;
                 border-radius: 8px;
                 background-color: $primary-white;
@@ -105,11 +103,9 @@ section {
                 font-size: $fs-2;
                 font-weight: $fw-1;
               }
-
             }
           }
         }
-
       }
     }
   }
@@ -123,5 +119,4 @@ section {
     padding: 20px 16px;
     box-shadow: 0px -4px 8px 0px $box-shadow-gray;
   }
-
 }
