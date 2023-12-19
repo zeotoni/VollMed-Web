@@ -3,142 +3,15 @@
   <app-container>
     <input type="text" placeholder="Pesquisar" aria-label="Pesquisar" />
     <div class="list">
-      <div class="cards">
-        <div class="cards__header">
-          <span>A</span>
-          <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com.br</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="cards__header">
-          <span>A</span>
-          <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="cards__header">
-          <span>A</span>
-          <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="card">
-          <details>
-            <summary>
-              <div>
-                <h3>Brenda de Almeida</h3>
-                <p>Ortopedista | CRM 47889-PR</p>
-              </div>
-            </summary>
-            <div>
-              <p>brenda.almeida.com</p>
-              <p>(51)99999-8888</p>
-              <p>Av.das Graças Altas, 633-Curitiba/PR</p>
-              <p>CEP:66.777.100</p>
-              <div class="button">
-                <button>Editar</button>
-                <button>Desativar perfil</button>
-              </div>
-            </div>
-          </details>
+      <div *ngFor="let item of medicosList$ | async">
+        <div class="cards">
+          <div class="cards__header">
+            <span>{{ item.letra }}</span>
+            <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
+          </div>
+          <div *ngFor="let medico of item.medicos">
+            <app-card-medico [medico]="medico"></app-card-medico>
+          </div>
         </div>
       </div>
     </div>
