@@ -1,0 +1,28 @@
+<div class="card">
+  <details>
+    <summary>
+      <div>
+        <h3>{{ medico.nome }}</h3>
+        <p>
+          {{ medico.especialidade }} | CRM {{ medico.crm }}-{{
+            medico.endereco.uf
+          }}
+        </p>
+      </div>
+    </summary>
+    <div>
+      <p>{{ medico.email }}</p>
+      <p>{{ medico.telefone }}</p>
+      <p>
+        {{ medico.endereco.logradouro }}, {{ medico.endereco.numero }}-{{
+          medico.endereco.cidade
+        }}/{{ medico.endereco.uf }}
+      </p>
+      <p>{{ medico.endereco.cep }}</p>
+      <div class="button">
+        <button>Editar</button>
+        <button>Desativar perfil</button>
+      </div>
+    </div>
+  </details>
+</div>

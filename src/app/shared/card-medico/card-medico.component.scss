@@ -1,0 +1,63 @@
+@import 'assets/scss/_base.scss';
+
+.card {
+  padding: 5px 8px;
+
+  details[open] summary::after {
+    content: ' \25b2'; /* Símbolo de seta para baixo */
+  }
+
+  details:not([open]) summary::after {
+    content: ' \25bc'; /* Símbolo de seta para a direita */
+  }
+
+  details {
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5px;
+      cursor: pointer;
+
+      h3 {
+        font-size: $fs-2;
+        font-weight: $fw-1;
+        color: $primary-blue;
+      }
+
+      p {
+        font-size: $fs-1;
+        font-weight: $fw-1;
+        color: $font-gray;
+      }
+    }
+    border-bottom: 1px solid $secondary-gray;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: $fs-1;
+      font-weight: $fw-1;
+      color: $font-gray;
+
+      div.button {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        padding: 14px 0;
+
+        button {
+          border: 1px solid $primary-blue;
+          border-radius: 8px;
+          background-color: $primary-white;
+          color: $primary-blue;
+          width: 50%;
+          padding: 5px 0;
+          font-size: $fs-2;
+          font-weight: $fw-1;
+        }
+      }
+    }
+  }
+}
