@@ -2,6 +2,7 @@ import { Especialidade } from '../enums/especialidade';
 import { Endereco } from './endereco';
 
 export interface Medico {
+  id?: number;
   nome: string;
   crm: string;
   email: string;
