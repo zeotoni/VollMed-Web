@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ButtonComponent } from './button/button.component';
 import { CardMedicoComponent } from './card-medico/card-medico.component';
 import { ContainerComponent } from './container/container.component';
@@ -18,7 +19,7 @@ import { HeaderComponent } from './header/header.component';
     ErrorMessageComponent,
     CardMedicoComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
     ButtonComponent,
     ContainerComponent,
