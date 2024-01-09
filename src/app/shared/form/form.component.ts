@@ -1,5 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Especialidade } from 'app/core/enums/especialidade';
 import { Estado } from 'app/core/enums/estados';
 import { Medico } from 'app/core/interfaces/medico';
@@ -12,8 +20,10 @@ import { MedicosService } from './../../core/services/medicos.service';
 })
 export class FormComponent implements OnInit {
   @Input() btnText!: string;
+  @Output() medicoData = new EventEmitter<Medico>();
 
   signUpForm!: FormGroup;
+  isInputFocused = false;
 
   states = Object.values(Estado).filter((value) => typeof value === 'string');
 
@@ -24,9 +34,34 @@ export class FormComponent implements OnInit {
   constructor(
     private medicosService: MedicosService,
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
+    const id = Number(this.route.snapshot.params['id']);
+
+    if (id) {
+      this.medicosService.getMedicoById(Number(id)).subscribe((medico) => {
+        this.signUpForm.setValue({
+          nome: medico.nome,
+          especialidade: medico.especialidade,
+          crm: medico.crm,
+          email: medico.email,
+          telefone: medico.telefone,
+          logradouro: medico.endereco.logradouro,
+          numero: medico.endereco.numero,
+          complemento: medico.endereco.complemento,
+          cidade: medico.endereco.cidade,
+          uf: medico.endereco.uf,
+          cep: medico.endereco.cep,
+        });
+        this.signUpForm.get('email')?.disable();
+        this.signUpForm.get('crm')?.disable();
+        this.signUpForm.get('especialidade')?.disable();
+      });
+    }
+
     this.signUpForm = this.formBuilder.group({
       nome: ['', [Validators.required]],
       especialidade: ['', [Validators.required]],
@@ -44,6 +79,7 @@ export class FormComponent implements OnInit {
 
   private extractFormValues(form: FormGroup): Medico {
     return {
+      id: Number(this.route.snapshot.params['id']),
       nome: form.get('nome')?.value,
       especialidade: form.get('especialidade')?.value,
       crm: form.get('crm')?.value,
@@ -60,19 +96,20 @@ export class FormComponent implements OnInit {
     };
   }
 
-  dataSignUp() {
-    const novoMedico: Medico = this.extractFormValues(this.signUpForm);
-    this.medicosService.register(novoMedico).subscribe({
-      next: (value) => {
-        console.log(value);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  dataSubmit() {
+    const newData: Medico = this.extractFormValues(this.signUpForm);
+    this.medicoData.emit(newData);
   }
 
   btnState() {
     return this.signUpForm.valid ? 'primary' : 'disabled';
+  }
+
+  onInputFocus() {
+    this.isInputFocused = true;
+  }
+
+  onInputBlur() {
+    this.isInputFocused = false;
   }
 }

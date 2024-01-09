@@ -1,2 +1,5 @@
 <app-header [headerTitle]="'Editar'"></app-header>
-<app-form [btnText]="'Concluir Edição'"></app-form>
+<app-form
+  [btnText]="'Concluir Edição'"
+  (medicoData)="onSubmit($event)"></app-form>
+<app-modal-warning #modal [text]="modalText" />

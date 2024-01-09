@@ -9,6 +9,7 @@ import { ContainerComponent } from './container/container.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { FormComponent } from './form/form.component';
 import { HeaderComponent } from './header/header.component';
+import { ModalWarningComponent } from './modal-warning/modal-warning.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
     FormComponent,
     ErrorMessageComponent,
     CardMedicoComponent,
+    ModalWarningComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -26,6 +28,7 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent,
     FormComponent,
     CardMedicoComponent,
+    ModalWarningComponent,
   ],
 })
 export class SharedModule {}

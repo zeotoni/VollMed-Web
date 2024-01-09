@@ -11,6 +11,13 @@ export interface Medico {
   endereco: Endereco;
 }
 
+export interface MedicoEditar {
+  id?: number;
+  nome: string;
+  telefone: string;
+  endereco: Endereco;
+}
+
 export interface MedicoList {
   content: Medico[];
   pageable: {

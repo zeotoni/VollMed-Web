@@ -1,8 +1,14 @@
 <app-container>
-  <form #form="ngForm" [formGroup]="signUpForm" (submit)="dataSignUp()">
+  <form #form="ngForm" [formGroup]="signUpForm" (submit)="dataSubmit()">
     <fieldset>
       <legend>Profissional</legend>
-      <input formControlName="nome" type="text" placeholder="Nome Completo" />
+      <input
+        formControlName="nome"
+        type="text"
+        placeholder="Nome Completo"
+        (focus)="onInputFocus()"
+        (blur)="onInputBlur()"
+        [ngClass]="{ active: isInputFocused }" />
       <app-error-message
         *ngIf="
           signUpForm.get('nome')?.errors?.['required'] &&

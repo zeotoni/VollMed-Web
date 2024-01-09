@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Medico } from 'app/core/interfaces/medico';
+import { Medico, MedicoEditar } from 'app/core/interfaces/medico';
 import { environment } from 'environments/environment.development';
 import { Observable, from, groupBy, map, mergeMap, toArray } from 'rxjs';
 import { MedicoList } from '../interfaces/medico';
@@ -38,5 +38,13 @@ export class MedicosService {
         }));
       }),
     );
+  }
+
+  getMedicoById(id: number): Observable<Medico> {
+    return this.http.get<Medico>(`${this.apiUrl}/medicos/${id}`);
+  }
+
+  editMedico(data: MedicoEditar): Observable<MedicoEditar> {
+    return this.http.put<MedicoEditar>(`${this.apiUrl}/medicos`, data);
   }
 }
