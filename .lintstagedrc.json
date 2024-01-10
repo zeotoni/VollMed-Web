@@ -1,3 +1,4 @@
 {
-  "src/**/*.{js,ts}": ["npm run lint:fix", "npm run prettier"]
+  "src/**/*.{js,ts}": ["npm run lint:fix", "npm run prettier"],
+  "src/**/*.{css,scss}": ["npm run stylelint:fix"]
 }
