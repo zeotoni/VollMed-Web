@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Medico, MedicoEditar } from 'app/core/interfaces/medico';
 import { MedicosService } from './../../core/services/medicos.service';
 
@@ -8,9 +9,12 @@ import { MedicosService } from './../../core/services/medicos.service';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent {
-  modalText = 'Dados atualizados com secesso!';
+  modalText = 'Dados atualizados com sucesso!';
   @ViewChild('modal') modalWarning!: ElementRef;
-  constructor(private medicosService: MedicosService) {}
+  constructor(
+    private medicosService: MedicosService,
+    private router: Router,
+  ) {}
 
   onSubmit(data: Medico) {
     const dadosEditar: MedicoEditar = {
@@ -24,6 +28,7 @@ export class EditComponent {
         this.openModal();
         setTimeout(() => {
           this.closeModal();
+          this.router.navigate(['/listar']);
         }, 3000);
       },
       error(err) {
