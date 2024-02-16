@@ -16,7 +16,10 @@
       </div>
     </div>
     <div class="footer">
-      <app-button text="Cadastrar novo perfil"></app-button>
+      <app-button
+        text="Cadastrar novo perfil"
+        [disabled]="false"
+        routerLink="/cadastrar"></app-button>
     </div>
   </app-container>
 </section>
