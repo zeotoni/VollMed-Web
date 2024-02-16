@@ -146,7 +146,11 @@
         [style]="btnState()"
         [disabled]="!signUpForm.valid"
         text="{{ btnText }}"></app-button>
-      <app-button [style]="'secondary'" text="Cancelar"></app-button>
+      <app-button
+        [style]="'secondary'"
+        [disabled]="false"
+        routerLink="/listar"
+        text="Cancelar"></app-button>
     </div>
   </form>
 </app-container>
