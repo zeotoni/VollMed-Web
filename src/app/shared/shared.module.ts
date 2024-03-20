@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ButtonComponent } from './button/button.component';
 import { CardMedicoComponent } from './card-medico/card-medico.component';
 import { ContainerComponent } from './container/container.component';
+import { DeactivationModalComponent } from './deactivation-modal/deactivation-modal.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { FormComponent } from './form/form.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,6 +21,7 @@ import { ModalWarningComponent } from './modal-warning/modal-warning.component';
     ErrorMessageComponent,
     CardMedicoComponent,
     ModalWarningComponent,
+    DeactivationModalComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -29,6 +31,7 @@ import { ModalWarningComponent } from './modal-warning/modal-warning.component';
     FormComponent,
     CardMedicoComponent,
     ModalWarningComponent,
+    DeactivationModalComponent,
   ],
 })
 export class SharedModule {}

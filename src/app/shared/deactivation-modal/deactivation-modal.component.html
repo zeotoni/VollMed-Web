@@ -1,0 +1,30 @@
+<dialog aria-modal="true" role="dialog" open>
+  <div class="dialog__header">
+    <img src="assets/images/person.svg" alt="" />
+    <h3>Deseja desativar este perfil?</h3>
+    <div class="dialog__header-info">
+      <div class="bar"></div>
+      <div>
+        <span>Brenda de Almeida</span>
+        <p>Ortopedista | CRM 47.889-PR</p>
+      </div>
+    </div>
+  </div>
+  <div class="dialog__text">
+    <p>
+      Ao desativar este perfil, suas informações ficarão desabilitadas para
+      pesquisas e futuros agendamentos.
+    </p>
+    <p>
+      Certifique-se que não há consultas agendadas, caso tenha, a desativação
+      não poderá ser concluída.
+    </p>
+  </div>
+  <div class="dialog__buttons">
+    <app-button text="Desativar este perfil" [disabled]="false"></app-button>
+    <app-button
+      text="Cancelar"
+      [disabled]="false"
+      [style]="'secondary'"></app-button>
+  </div>
+</dialog>

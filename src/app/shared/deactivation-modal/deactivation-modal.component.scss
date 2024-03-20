@@ -1,0 +1,83 @@
+@import 'assets/scss/_base.scss';
+
+dialog {
+  padding: 22px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 10px 0 0;
+  gap: 28px;
+  margin-inline: auto;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .dialog__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    img {
+      background-color: $primary-blue;
+      border-radius: 5px;
+      width: 110px;
+      margin-inline: auto;
+    }
+
+    h3 {
+      color: $primary-blue;
+      font-size: $fs-4;
+      font-weight: 700;
+    }
+
+    &-info {
+      margin-inline: auto;
+      text-align: initial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 25px;
+
+      .bar {
+        width: 10px;
+        background-color: $secondary-blue;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      span {
+        font-weight: $fw-1;
+        color: $primary-blue;
+        font-size: $fs-2;
+      }
+
+      p {
+        font-weight: $fw-1;
+        color: $font-gray;
+        font-size: $fs-1;
+      }
+    }
+  }
+
+  .dialog__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    p {
+      color: $primary-black;
+      font-size: $fs-3;
+      line-height: 1.3;
+    }
+  }
+
+  .dialog__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
