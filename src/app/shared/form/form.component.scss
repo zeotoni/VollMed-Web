@@ -80,11 +80,11 @@ form {
       justify-content: center;
       gap: 4%;
 
-      &>* {
+      & > * {
         width: 50%;
       }
 
-      &>div {
+      & > div {
         display: flex;
         flex-direction: column;
         gap: 8px;
