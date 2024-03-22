@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-modal-warning',
@@ -7,10 +7,17 @@ import { Component, ElementRef, Input } from '@angular/core';
 })
 export class ModalWarningComponent {
   @Input() text!: string;
+  @Input() title!: string;
+
+  @ViewChild('modalWarning') modal!: ElementRef;
 
   nativeElement: HTMLElement;
 
   constructor(element: ElementRef) {
     this.nativeElement = element.nativeElement;
+  }
+
+  close() {
+    this.modal.nativeElement.close();
   }
 }

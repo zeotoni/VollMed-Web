@@ -1,3 +1,8 @@
-<dialog aria-modal="true" role="dialog">
+<dialog aria-modal="true" role="dialog" #modalWarning>
+  <div class="dialog__header">
+    <img src="assets/images/person.svg" alt="símbolo de perfil" />
+    <h3>{{ title }}</h3>
+  </div>
   <p>{{ text }}</p>
+  <app-button text="Entendi" [disabled]="false" (click)="close()"></app-button>
 </dialog>
