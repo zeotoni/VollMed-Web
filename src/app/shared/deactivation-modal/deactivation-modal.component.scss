@@ -6,10 +6,10 @@ dialog {
   max-width: 360px;
   text-align: center;
   border: none;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  bottom: 0;
   border-radius: 10px 10px 0 0;
-  gap: 28px;
   margin-inline: auto;
 
   &::backdrop {
@@ -20,6 +20,7 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 28px;
 
     img {
       background-color: $primary-blue;
@@ -67,6 +68,7 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-bottom: 28px;
 
     p {
       color: $primary-black;
