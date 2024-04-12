@@ -1,12 +1,16 @@
-<dialog aria-modal="true" role="dialog" open>
+<dialog aria-modal="true" role="dialog" #deactivationModal>
   <div class="dialog__header">
     <img src="assets/images/person.svg" alt="" />
     <h3>Deseja desativar este perfil?</h3>
     <div class="dialog__header-info">
       <div class="bar"></div>
       <div>
-        <span>Brenda de Almeida</span>
-        <p>Ortopedista | CRM 47.889-PR</p>
+        <span>{{ medico.nome }}</span>
+        <p>
+          {{ medico.especialidade }} | CRM {{ medico.crm }}-{{
+            medico.endereco.uf
+          }}
+        </p>
       </div>
     </div>
   </div>
@@ -25,6 +29,7 @@
     <app-button
       text="Cancelar"
       [disabled]="false"
-      [style]="'secondary'"></app-button>
+      [style]="'secondary'"
+      (click)="closeModal()"></app-button>
   </div>
 </dialog>

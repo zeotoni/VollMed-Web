@@ -6,11 +6,9 @@ dialog {
   max-width: 360px;
   text-align: center;
   border: none;
-  position: absolute;
-  top: 100%;
-  bottom: 0;
   border-radius: 10px 10px 0 0;
   margin-inline: auto;
+  top: auto;
 
   &::backdrop {
     background: rgba(0, 0, 0, 0.7);
