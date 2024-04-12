@@ -47,4 +47,8 @@ export class MedicosService {
   editMedico(data: MedicoEditar): Observable<MedicoEditar> {
     return this.http.put<MedicoEditar>(`${this.apiUrl}/medicos`, data);
   }
+
+  deleteMedico(id: number | undefined): Observable<Medico> {
+    return this.http.delete<Medico>(`${this.apiUrl}/medicos/${id}`);
+  }
 }

@@ -25,7 +25,10 @@
     </p>
   </div>
   <div class="dialog__buttons">
-    <app-button text="Desativar este perfil" [disabled]="false"></app-button>
+    <app-button
+      text="Desativar este perfil"
+      [disabled]="false"
+      (click)="deactivate()"></app-button>
     <app-button
       text="Cancelar"
       [disabled]="false"
@@ -33,3 +36,4 @@
       (click)="closeModal()"></app-button>
   </div>
 </dialog>
+<app-modal-warning [title]="modalTitle" [text]="modalText" #modalWarning />
