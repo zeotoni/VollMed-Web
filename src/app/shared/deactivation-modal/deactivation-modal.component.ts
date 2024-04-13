@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Medico } from 'app/core/interfaces/medico';
 import { MedicosService } from 'app/core/services/medicos.service';
+import { MedicoListService } from './../../core/services/medicos-list.service';
 
 @Component({
   selector: 'app-deactivation-modal',
@@ -19,6 +20,7 @@ export class DeactivationModalComponent {
   constructor(
     private element: ElementRef,
     private medicosService: MedicosService,
+    private medicoListService: MedicoListService,
   ) {
     this.nativeElement = element.nativeElement;
   }
@@ -26,9 +28,14 @@ export class DeactivationModalComponent {
   deactivate(): void {
     this.medicosService.deleteMedico(this.medico.id).subscribe({
       next: () => {
-        this.modalText = 'Perfil desativado com sucesso!';
         this.closeModal();
+        this.modalText = 'Perfil desativado com sucesso!';
         this.openModalWarning();
+        setInterval(() => {
+          this.medicosService.getMedicosList().subscribe((list) => {
+            this.medicoListService.setUpdatedList(list);
+          });
+        }, 2000);
       },
       error: () => {
         this.modalTitle = 'Não foi possível desativar esse perfil';
