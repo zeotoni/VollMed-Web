@@ -1,10 +1,15 @@
 <app-header [headerTitle]="'Médicos'"></app-header>
 <section>
   <app-container>
-    <input type="text" placeholder="Pesquisar" aria-label="Pesquisar" />
+    <input
+      type="text"
+      placeholder="Pesquisar"
+      aria-label="Pesquisar"
+      #inputSearch
+      (keyup)="updateFilter(inputSearch.value)" />
     <div class="list">
-      <div *ngFor="let item of medicosList$ | async">
-        <div class="cards">
+      <div *ngFor="let item of medicosList$ | filterByName: filter">
+        <div class="cards" *ngIf="item.medicos.length">
           <div class="cards__header">
             <span>{{ item.letra }}</span>
             <img src="assets/images/logo-card.svg" alt="logo da vollmed" />

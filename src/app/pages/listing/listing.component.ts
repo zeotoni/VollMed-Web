@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Medico } from 'app/core/interfaces/medico';
 import { MedicosService } from 'app/core/services/medicos.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 import { MedicoListService } from './../../core/services/medicos-list.service';
 
 @Component({
@@ -10,13 +10,19 @@ import { MedicoListService } from './../../core/services/medicos-list.service';
   styleUrls: ['./listing.component.scss'],
 })
 export class ListingComponent implements OnInit, AfterViewInit {
-  medicosList$!: Observable<{ letra: string; medicos: Medico[] }[]>;
+  medicosList$!: { letra: string; medicos: Medico[] }[];
   subscriptionMedicosList!: Subscription;
+  filter!: string;
+  private searchTerm$ = new Subject<string>();
 
   constructor(
     private medicoService: MedicosService,
     private medicoListService: MedicoListService,
-  ) {}
+  ) {
+    this.searchTerm$.pipe(debounceTime(300)).subscribe((value) => {
+      this.filter = value;
+    });
+  }
 
   ngOnInit(): void {
     this.medicoService.getMedicosList().subscribe((list) => {
@@ -35,5 +41,9 @@ export class ListingComponent implements OnInit, AfterViewInit {
           console.log(err);
         },
       });
+  }
+
+  updateFilter(filterValue: string): void {
+    this.searchTerm$.next(filterValue);
   }
 }

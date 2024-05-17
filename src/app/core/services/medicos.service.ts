@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Medico, MedicoEditar, MedicoList } from 'app/core/interfaces/medico';
+import { Medico, MedicoEditar } from 'app/core/interfaces/medico';
 import { environment } from 'environments/environment.development';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,7 @@ export class MedicosService {
   }
 
   getMedicosList(): Observable<Medico[]> {
-    return this.http
-      .get<MedicoList>(`${this.apiUrl}/medicos`)
-      .pipe(map((medicos) => medicos.content));
+    return this.http.get<Medico[]>(`${this.apiUrl}/medicos`);
   }
 
   getMedicoById(id: number): Observable<Medico> {
@@ -32,5 +30,11 @@ export class MedicosService {
 
   deleteMedico(id: number | undefined): Observable<Medico> {
     return this.http.delete<Medico>(`${this.apiUrl}/medicos/${id}`);
+  }
+
+  getByName(name: string): Observable<Medico[]> {
+    return this.http.get<Medico[]>(
+      `${this.apiUrl}/medicos/search?nome=${name}`,
+    );
   }
 }

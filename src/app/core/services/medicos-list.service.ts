@@ -1,13 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  Subject,
-  from,
-  groupBy,
-  map,
-  mergeMap,
-  toArray,
-} from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { Medico } from '../interfaces/medico';
 
 @Injectable({
@@ -24,19 +16,36 @@ export class MedicoListService {
     return this.listMedicosSubject.asObservable();
   }
 
-  listJoinedByLetter(
-    list: Medico[],
+  getFilteredMedicosList(
+    filterValue: string,
   ): Observable<{ letra: string; medicos: Medico[] }[]> {
-    return from(list).pipe(
-      groupBy((medico) => medico.nome.charAt(0).toUpperCase()),
-      mergeMap((group) => group.pipe(toArray())),
-      toArray(),
-      map((gruposPorLetra) => {
-        return gruposPorLetra.map((grupo) => ({
-          letra: grupo[0].nome.charAt(0).toUpperCase(),
-          medicos: grupo,
-        }));
+    return this.listMedicosSubject.pipe(
+      map((list) => {
+        const filteredList = list.filter((medico) =>
+          medico.nome.toLowerCase().includes(filterValue.toLowerCase()),
+        );
+
+        return this.listJoinedByLetter(filteredList);
       }),
     );
+  }
+
+  listJoinedByLetter(list: Medico[]) {
+    const groupedMedicos: { letra: string; medicos: Medico[] }[] = [];
+    const groupedMap = new Map<string, Medico[]>();
+
+    for (const medico of list) {
+      const letra = medico.nome.charAt(0).toUpperCase();
+      if (!groupedMap.has(letra)) {
+        groupedMap.set(letra, []);
+      }
+      groupedMap.get(letra)?.push(medico);
+    }
+
+    groupedMap.forEach((value, key) => {
+      groupedMedicos.push({ letra: key, medicos: value });
+    });
+
+    return groupedMedicos;
   }
 }
