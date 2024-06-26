@@ -1,17 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  Renderer2,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Especialidade } from 'app/core/enums/especialidade';
-import { Estado } from 'app/core/enums/estados';
-import { Medico } from 'app/core/interfaces/medico';
-import { MedicosService } from './../../core/services/medicos.service';
+import { Specialty } from 'app/core/enums/specialty';
+import { State } from 'app/core/enums/state';
+import { Doctor } from 'app/core/interfaces/doctor';
+import { DoctorService } from './../../core/services/medicos.service';
 
 @Component({
   selector: 'app-form',
@@ -20,85 +13,84 @@ import { MedicosService } from './../../core/services/medicos.service';
 })
 export class FormComponent implements OnInit {
   @Input() btnText!: string;
-  @Output() medicoData = new EventEmitter<Medico>();
+  @Output() doctorData = new EventEmitter<Doctor>();
 
   signUpForm!: FormGroup;
   isInputFocused = false;
 
-  states = Object.values(Estado).filter((value) => typeof value === 'string');
+  states = Object.values(State).filter((value) => typeof value === 'string');
 
-  specialties = Object.values(Especialidade).filter(
+  specialties = Object.values(Specialty).filter(
     (value) => typeof value === 'string',
   );
 
   constructor(
-    private medicosService: MedicosService,
+    private doctorService: DoctorService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
 
     if (id) {
-      this.medicosService.getMedicoById(Number(id)).subscribe((medico) => {
+      this.doctorService.getDoctorById(Number(id)).subscribe((doctor) => {
         this.signUpForm.setValue({
-          nome: medico.nome,
-          especialidade: medico.especialidade,
-          crm: medico.crm,
-          email: medico.email,
-          telefone: medico.telefone,
-          logradouro: medico.endereco.logradouro,
-          numero: medico.endereco.numero,
-          complemento: medico.endereco.complemento,
-          cidade: medico.endereco.cidade,
-          uf: medico.endereco.uf,
-          cep: medico.endereco.cep,
+          name: doctor.name,
+          specialty: doctor.specialty,
+          crm: doctor.crm,
+          email: doctor.email,
+          phone: doctor.phone,
+          street: doctor.address.street,
+          number: doctor.address.number,
+          complement: doctor.address.complement,
+          city: doctor.address.city,
+          state: doctor.address.state,
+          postalCode: doctor.address.postalCode,
         });
         this.signUpForm.get('email')?.disable();
         this.signUpForm.get('crm')?.disable();
-        this.signUpForm.get('especialidade')?.disable();
+        this.signUpForm.get('specialty')?.disable();
       });
     }
 
     this.signUpForm = this.formBuilder.group({
-      nome: ['', [Validators.required]],
-      especialidade: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      specialty: ['', [Validators.required]],
       crm: ['', [Validators.required, Validators.pattern(/^\d{4,6}$/)]],
       email: ['', [Validators.required, Validators.email]],
-      telefone: ['', [Validators.required, Validators.maxLength(11)]],
-      logradouro: ['', [Validators.required]],
-      numero: [''],
-      complemento: [''],
-      cidade: ['', [Validators.required]],
-      uf: ['', [Validators.required]],
-      cep: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
+      phone: ['', [Validators.required, Validators.maxLength(11)]],
+      street: ['', [Validators.required]],
+      number: [''],
+      complement: [''],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      postalCode: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
     });
   }
 
-  private extractFormValues(form: FormGroup): Medico {
+  private extractFormValues(form: FormGroup): Doctor {
     return {
       id: Number(this.route.snapshot.params['id']),
-      nome: form.get('nome')?.value,
-      especialidade: form.get('especialidade')?.value,
+      name: form.get('name')?.value,
+      specialty: form.get('specialty')?.value,
       crm: form.get('crm')?.value,
       email: form.get('email')?.value,
-      telefone: form.get('telefone')?.value,
-      endereco: {
-        logradouro: form.get('logradouro')?.value,
-        numero: form.get('numero')?.value,
-        complemento: form.get('complemento')?.value,
-        cidade: form.get('cidade')?.value,
-        uf: form.get('uf')?.value,
-        cep: form.get('cep')?.value,
+      phone: form.get('phone')?.value,
+      address: {
+        street: form.get('street')?.value,
+        number: form.get('number')?.value,
+        complement: form.get('complement')?.value,
+        city: form.get('city')?.value,
+        state: form.get('state')?.value,
+        postalCode: form.get('postalCode')?.value,
       },
     };
   }
 
   dataSubmit() {
-    const newData: Medico = this.extractFormValues(this.signUpForm);
-    this.medicoData.emit(newData);
+    const newData: Doctor = this.extractFormValues(this.signUpForm);
+    this.doctorData.emit(newData);
   }
 
   btnState() {

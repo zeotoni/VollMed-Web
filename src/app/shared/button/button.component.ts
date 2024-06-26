@@ -8,6 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() text!: string;
   @Input() style: 'primary' | 'secondary' | 'disabled' = 'primary';
-
   @Input() disabled = true;
 }

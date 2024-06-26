@@ -1,40 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Medico, MedicoEditar } from 'app/core/interfaces/medico';
+import { Doctor, DoctorEdit, DoctorList } from 'app/core/interfaces/doctor';
 import { environment } from 'environments/environment.development';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MedicosService {
+export class DoctorService {
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  register(data: Medico): Observable<Medico> {
-    return this.http.post<Medico>(`${this.apiUrl}/medicos`, data);
+  register(data: Doctor): Observable<Doctor> {
+    return this.http.post<Doctor>(`${this.apiUrl}/doctors`, data);
   }
 
-  getMedicosList(): Observable<Medico[]> {
-    return this.http.get<Medico[]>(`${this.apiUrl}/medicos`);
+  getDoctorList(page: number): Observable<Doctor[]> {
+    return this.http
+      .get<DoctorList>(`${this.apiUrl}/doctors${`?page=`}${page}`)
+      .pipe(map((list) => list.content));
   }
 
-  getMedicoById(id: number): Observable<Medico> {
-    return this.http.get<Medico>(`${this.apiUrl}/medicos/${id}`);
+  getDoctorById(id: number): Observable<Doctor> {
+    return this.http.get<Doctor>(`${this.apiUrl}/doctors/${id}`);
   }
 
-  editMedico(data: MedicoEditar): Observable<MedicoEditar> {
-    return this.http.put<MedicoEditar>(`${this.apiUrl}/medicos`, data);
+  editDoctor(data: DoctorEdit): Observable<DoctorEdit> {
+    return this.http.put<DoctorEdit>(`${this.apiUrl}/doctors`, data);
   }
 
-  deleteMedico(id: number | undefined): Observable<Medico> {
-    return this.http.delete<Medico>(`${this.apiUrl}/medicos/${id}`);
+  deleteDoctor(id: number | undefined): Observable<Doctor> {
+    return this.http.delete<Doctor>(`${this.apiUrl}/doctors/${id}`);
   }
 
-  getByName(name: string): Observable<Medico[]> {
-    return this.http.get<Medico[]>(
-      `${this.apiUrl}/medicos/search?nome=${name}`,
+  getByName(name: string): Observable<Doctor[]> {
+    return this.http.get<Doctor[]>(
+      `${this.apiUrl}/doctors/search?name=${name}`,
     );
   }
 }

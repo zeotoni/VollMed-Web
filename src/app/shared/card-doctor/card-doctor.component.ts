@@ -1,20 +1,20 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Medico } from 'app/core/interfaces/medico';
+import { Doctor } from 'app/core/interfaces/doctor';
 
 @Component({
-  selector: 'app-card-medico',
-  templateUrl: './card-medico.component.html',
-  styleUrls: ['./card-medico.component.scss'],
+  selector: 'app-card-doctor',
+  templateUrl: './card-doctor.component.html',
+  styleUrls: ['./card-doctor.component.scss'],
 })
-export class CardMedicoComponent {
-  @Input() medico!: Medico;
+export class CardDoctorComponent {
+  @Input() doctor!: Doctor;
   @ViewChild('deactivationModal') modal!: ElementRef;
 
   constructor(private router: Router) {}
 
   edit(): void {
-    this.router.navigate([`/editar/` + this.medico.id]);
+    this.router.navigate([`/editar/` + this.doctor.id]);
   }
 
   deactivate(): void {

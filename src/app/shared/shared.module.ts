@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from './button/button.component';
-import { CardMedicoComponent } from './card-medico/card-medico.component';
+import { CardDoctorComponent } from './card-doctor/card-doctor.component';
 import { ContainerComponent } from './container/container.component';
 import { DeactivationModalComponent } from './deactivation-modal/deactivation-modal.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
@@ -19,7 +19,7 @@ import { ModalWarningComponent } from './modal-warning/modal-warning.component';
     HeaderComponent,
     FormComponent,
     ErrorMessageComponent,
-    CardMedicoComponent,
+    CardDoctorComponent,
     ModalWarningComponent,
     DeactivationModalComponent,
   ],
@@ -29,7 +29,7 @@ import { ModalWarningComponent } from './modal-warning/modal-warning.component';
     ContainerComponent,
     HeaderComponent,
     FormComponent,
-    CardMedicoComponent,
+    CardDoctorComponent,
     ModalWarningComponent,
     DeactivationModalComponent,
   ],

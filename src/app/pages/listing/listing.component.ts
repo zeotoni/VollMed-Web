@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Medico } from 'app/core/interfaces/medico';
-import { MedicosService } from 'app/core/services/medicos.service';
+import { Doctor } from 'app/core/interfaces/doctor';
+import { DoctorService } from 'app/core/services/medicos.service';
 import { Subject, Subscription, debounceTime } from 'rxjs';
-import { MedicoListService } from './../../core/services/medicos-list.service';
+import { DoctorListService } from '../../core/services/doctor-list.service';
 
 @Component({
   selector: 'app-listing',
@@ -10,14 +10,15 @@ import { MedicoListService } from './../../core/services/medicos-list.service';
   styleUrls: ['./listing.component.scss'],
 })
 export class ListingComponent implements OnInit, AfterViewInit {
-  medicosList$!: { letra: string; medicos: Medico[] }[];
-  subscriptionMedicosList!: Subscription;
+  doctorList$!: { letter: string; doctors: Doctor[] }[];
+  subscriptionDoctorList!: Subscription;
   filter!: string;
+  page = 0;
   private searchTerm$ = new Subject<string>();
 
   constructor(
-    private medicoService: MedicosService,
-    private medicoListService: MedicoListService,
+    private doctorService: DoctorService,
+    private doctorListService: DoctorListService,
   ) {
     this.searchTerm$.pipe(debounceTime(300)).subscribe((value) => {
       this.filter = value;
@@ -25,17 +26,17 @@ export class ListingComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.medicoService.getMedicosList().subscribe((list) => {
-      this.medicosList$ = this.medicoListService.listJoinedByLetter(list);
+    this.doctorService.getDoctorList(this.page).subscribe((list) => {
+      this.doctorList$ = this.doctorListService.listJoinedByLetter(list);
     });
   }
 
   ngAfterViewInit(): void {
-    this.subscriptionMedicosList = this.medicoListService
+    this.subscriptionDoctorList = this.doctorListService
       .getUpdatedList()
       .subscribe({
         next: (list) => {
-          this.medicosList$ = this.medicoListService.listJoinedByLetter(list);
+          this.doctorList$ = this.doctorListService.listJoinedByLetter(list);
         },
         error: (err) => {
           console.log(err);

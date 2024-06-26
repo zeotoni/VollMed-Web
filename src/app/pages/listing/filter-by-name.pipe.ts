@@ -1,24 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Medico } from 'app/core/interfaces/medico';
+import { Doctor } from 'app/core/interfaces/doctor';
 
 @Pipe({ name: 'filterByName' })
 export class FilterByName implements PipeTransform {
   transform(
-    medicosList: { letra: string; medicos: Medico[] }[],
+    doctorList: { letter: string; doctors: Doctor[] }[],
     nameQuery: string,
   ) {
     nameQuery = nameQuery?.toLowerCase();
 
     if (nameQuery) {
-      return medicosList.map((item) => {
-        const filteredMedicos = item.medicos.filter((medico) =>
-          medico.nome.toLowerCase().includes(nameQuery),
+      return doctorList.map((item) => {
+        const filteredDoctors = item.doctors.filter((doctor) =>
+          doctor.name.toLowerCase().includes(nameQuery),
         );
 
-        return { letra: item.letra, medicos: filteredMedicos };
+        return { letter: item.letter, doctors: filteredDoctors };
       });
     }
 
-    return medicosList;
+    return doctorList;
   }
 }

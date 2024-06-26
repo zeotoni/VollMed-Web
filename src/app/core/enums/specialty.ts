@@ -1,4 +1,4 @@
-export enum Especialidade {
+export enum Specialty {
   ORTOPEDIA,
   CARDIOLOGIA,
   GINECOLOGIA,

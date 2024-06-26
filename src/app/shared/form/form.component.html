@@ -3,7 +3,7 @@
     <fieldset>
       <legend>Profissional</legend>
       <input
-        formControlName="nome"
+        formControlName="name"
         type="text"
         placeholder="Nome Completo"
         (focus)="onInputFocus()"
@@ -11,14 +11,14 @@
         [ngClass]="{ active: isInputFocused }" />
       <app-error-message
         *ngIf="
-          signUpForm.get('nome')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('nome')?.touched)
+          signUpForm.get('name')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('name')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
 
       <div class="container-input">
         <div>
-          <select formControlName="especialidade">
+          <select formControlName="specialty">
             <option value="">Especialidade</option>
             <option *ngFor="let item of specialties" value="{{ item }}">
               {{ item }}
@@ -26,8 +26,8 @@
           </select>
           <app-error-message
             *ngIf="
-              signUpForm.get('especialidade')?.errors?.['required'] &&
-              (form.submitted || signUpForm.get('especialidade')?.touched)
+              signUpForm.get('specialty')?.errors?.['required'] &&
+              (form.submitted || signUpForm.get('specialty')?.touched)
             "
             text="Campo obrigatório"></app-error-message>
         </div>
@@ -67,49 +67,46 @@
         text="Formato de email inválido"></app-error-message>
 
       <input
-        formControlName="telefone"
+        formControlName="phone"
         type="tel"
         placeholder="Telefone ou Celular" />
       <app-error-message
         *ngIf="
-          signUpForm.get('telefone')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('telefone')?.touched)
+          signUpForm.get('phone')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('phone')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
     </fieldset>
 
     <fieldset>
       <legend>Endereço</legend>
-      <input
-        formControlName="logradouro"
-        type="text"
-        placeholder="Logradouro" />
+      <input formControlName="street" type="text" placeholder="Logradouro" />
       <app-error-message
         *ngIf="
-          signUpForm.get('logradouro')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('logradouro')?.touched)
+          signUpForm.get('street')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('street')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
 
       <div class="container-input">
-        <input formControlName="numero" type="number" placeholder="Número" />
+        <input formControlName="number" type="number" placeholder="Número" />
         <input
-          formControlName="complemento"
+          formControlName="complement"
           type="text"
           placeholder="Complemento" />
       </div>
 
-      <input formControlName="cidade" type="text" placeholder="Cidade" />
+      <input formControlName="city" type="text" placeholder="Cidade" />
       <app-error-message
         *ngIf="
-          signUpForm.get('cidade')?.errors?.['required'] &&
-          (form.submitted || signUpForm.get('cidade')?.touched)
+          signUpForm.get('city')?.errors?.['required'] &&
+          (form.submitted || signUpForm.get('city')?.touched)
         "
         text="Campo obrigatório"></app-error-message>
 
       <div class="container-input">
         <div>
-          <select formControlName="uf">
+          <select formControlName="state">
             <option value="">UF</option>
             <option *ngFor="let item of states" value="{{ item }}">
               {{ item }}
@@ -117,24 +114,24 @@
           </select>
           <app-error-message
             *ngIf="
-              signUpForm.get('uf')?.errors?.['required'] &&
-              (form.submitted || signUpForm.get('uf')?.touched)
+              signUpForm.get('state')?.errors?.['required'] &&
+              (form.submitted || signUpForm.get('state')?.touched)
             "
             text="Campo obrigatório"></app-error-message>
         </div>
 
         <div>
-          <input formControlName="cep" placeholder="CEP" />
+          <input formControlName="postalCode" placeholder="CEP" />
           <app-error-message
             *ngIf="
-              signUpForm.get('cep')?.errors?.['required'] &&
-              (form.submitted || signUpForm.get('cep')?.touched)
+              signUpForm.get('postalCode')?.errors?.['required'] &&
+              (form.submitted || signUpForm.get('postalCode')?.touched)
             "
             text="Campo obrigatório"></app-error-message>
           <app-error-message
             *ngIf="
-              signUpForm.get('cep')?.errors?.['pattern'] &&
-              (form.submitted || signUpForm.get('cep')?.touched)
+              signUpForm.get('postalCode')?.errors?.['pattern'] &&
+              (form.submitted || signUpForm.get('postalCode')?.touched)
             "
             text="Formato de CEP inválido"></app-error-message>
         </div>

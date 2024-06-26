@@ -1,0 +1,29 @@
+<div class="card">
+  <details>
+    <summary>
+      <div>
+        <h3>{{ doctor.name }}</h3>
+        <p>
+          {{ doctor.specialty }} | CRM {{ doctor.crm }}-{{
+            doctor.address.state
+          }}
+        </p>
+      </div>
+    </summary>
+    <div>
+      <p>{{ doctor.email }}</p>
+      <p>{{ doctor.phone }}</p>
+      <p>
+        {{ doctor.address.street }}, {{ doctor.address.number }}-{{
+          doctor.address.city
+        }}/{{ doctor.address.state }}
+      </p>
+      <p>{{ doctor.address.postalCode }}</p>
+      <div class="button">
+        <button (click)="edit()">Editar</button>
+        <button (click)="deactivate()">Desativar perfil</button>
+      </div>
+    </div>
+  </details>
+</div>
+<app-deactivation-modal #deactivationModal [doctor]="doctor" />

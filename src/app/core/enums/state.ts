@@ -1,4 +1,4 @@
-export enum Estado {
+export enum State {
   AC,
   AL,
   AP,

@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Medico } from 'app/core/interfaces/medico';
-import { MedicosService } from 'app/core/services/medicos.service';
-import { MedicoListService } from './../../core/services/medicos-list.service';
+import { Doctor } from 'app/core/interfaces/doctor';
+import { DoctorService } from 'app/core/services/medicos.service';
+import { DoctorListService } from '../../core/services/doctor-list.service';
 
 @Component({
   selector: 'app-deactivation-modal',
@@ -9,7 +9,7 @@ import { MedicoListService } from './../../core/services/medicos-list.service';
   styleUrls: ['./deactivation-modal.component.scss'],
 })
 export class DeactivationModalComponent {
-  @Input() medico!: Medico;
+  @Input() doctor!: Doctor;
   modalTitle!: string;
   modalText!: string;
 
@@ -19,21 +19,21 @@ export class DeactivationModalComponent {
 
   constructor(
     private element: ElementRef,
-    private medicosService: MedicosService,
-    private medicoListService: MedicoListService,
+    private doctorService: DoctorService,
+    private doctorListService: DoctorListService,
   ) {
     this.nativeElement = element.nativeElement;
   }
 
   deactivate(): void {
-    this.medicosService.deleteMedico(this.medico.id).subscribe({
+    this.doctorService.deleteDoctor(this.doctor.id).subscribe({
       next: () => {
         this.closeModal();
         this.modalText = 'Perfil desativado com sucesso!';
         this.openModalWarning();
         setInterval(() => {
-          this.medicosService.getMedicosList().subscribe((list) => {
-            this.medicoListService.setUpdatedList(list);
+          this.doctorService.getDoctorList(0).subscribe((list) => {
+            this.doctorListService.setUpdatedList(list);
           });
         }, 2000);
       },

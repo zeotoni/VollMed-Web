@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Medico } from 'app/core/interfaces/medico';
-import { MedicosService } from 'app/core/services/medicos.service';
+import { Doctor } from 'app/core/interfaces/doctor';
+import { DoctorService } from 'app/core/services/medicos.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,12 +12,12 @@ export class SignUpComponent {
   modalText = 'Cadastro realizado com sucesso!';
   @ViewChild('modal') modalWarning!: ElementRef;
   constructor(
-    private medicosService: MedicosService,
+    private doctorService: DoctorService,
     private router: Router,
   ) {}
 
-  onSubmit(data: Medico) {
-    this.medicosService.register(data).subscribe({
+  onSubmit(data: Doctor) {
+    this.doctorService.register(data).subscribe({
       next: () => {
         this.openModal();
         setTimeout(() => {

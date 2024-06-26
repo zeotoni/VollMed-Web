@@ -1,25 +1,25 @@
-import { Especialidade } from '../enums/especialidade';
-import { Endereco } from './endereco';
+import { Specialty } from '../enums/specialty';
+import { Address } from './address';
 
-export interface Medico {
+export interface Doctor {
   id?: number;
-  nome: string;
+  name: string;
   crm: string;
   email: string;
-  telefone: string;
-  especialidade: Especialidade;
-  endereco: Endereco;
+  phone: string;
+  specialty: Specialty;
+  address: Address;
 }
 
-export interface MedicoEditar {
+export interface DoctorEdit {
   id?: number;
-  nome: string;
-  telefone: string;
-  endereco: Endereco;
+  name: string;
+  phone: string;
+  address: Address;
 }
 
-export interface MedicoList {
-  content: Medico[];
+export interface DoctorList {
+  content: Doctor[];
   pageable: {
     pageNumber: number;
     pageSize: number;
