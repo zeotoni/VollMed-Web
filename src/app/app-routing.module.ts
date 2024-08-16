@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditComponent } from './pages/edit/edit.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ListingComponent } from './pages/listing/listing.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -13,21 +9,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./features/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'editar/:id',
-    component: EditComponent,
-  },
-  {
-    path: 'cadastrar',
-    component: SignUpComponent,
-    title: 'Cadastrar',
-  },
-  {
-    path: 'listar',
-    component: ListingComponent,
-    title: 'Listar',
+    path: 'doctors',
+    loadChildren: () =>
+      import('./features/doctors/doctors.module').then((m) => m.DoctorsModule),
   },
   {
     path: '**',

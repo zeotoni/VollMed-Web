@@ -1,0 +1,30 @@
+<app-header [headerTitle]="'Médicos'"></app-header>
+<section>
+  <app-container>
+    <input
+      type="text"
+      placeholder="Pesquisar"
+      aria-label="Pesquisar"
+      #inputSearch
+      (keyup)="updateFilter(inputSearch.value)" />
+    <div class="list">
+      <div *ngFor="let item of doctorList$ | filterByName: filter">
+        <div class="cards" *ngIf="item.doctors.length">
+          <div class="cards__header">
+            <span>{{ item.letter }}</span>
+            <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
+          </div>
+          <div *ngFor="let doctor of item.doctors">
+            <app-card-doctor [doctor]="doctor"></app-card-doctor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <app-button
+        text="Cadastrar novo perfil"
+        [disabled]="false"
+        routerLink="register"></app-button>
+    </div>
+  </app-container>
+</section>
