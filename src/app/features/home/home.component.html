@@ -14,7 +14,10 @@
         <img src="assets/images/doctor.svg" alt="ícone de médico" />
         <p>Médico(as)</p>
       </li>
-      <li>
+      <li
+        aria-hidden="true"
+        (click)="navigateToPatients()"
+        (keyup)="navigateToPatients()">
         <img src="assets/images/patient.svg" alt="Icone de paciente" />
         <p>Pacientes</p>
       </li>

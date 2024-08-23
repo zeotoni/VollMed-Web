@@ -12,4 +12,8 @@ export class HomeComponent {
   navigateToDoctors(): void {
     this.router.navigate(['doctors']);
   }
+
+  navigateToPatients(): void {
+    this.router.navigate(['patients']);
+  }
 }

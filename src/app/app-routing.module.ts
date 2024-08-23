@@ -18,6 +18,13 @@ const routes: Routes = [
       import('./features/doctors/doctors.module').then((m) => m.DoctorsModule),
   },
   {
+    path: 'patients',
+    loadChildren: () =>
+      import('./features/patients/patients.module').then(
+        (m) => m.PatientsModule,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full',
