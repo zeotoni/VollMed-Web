@@ -1,0 +1,64 @@
+<section>
+  <fieldset [formGroupName]="controlKey">
+    <legend>{{ label }}</legend>
+    <input formControlName="street" type="text" placeholder="Logradouro" />
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('street')?.errors?.['required'] &&
+        parentFormGroup.get(controlKey)?.get('street')?.touched
+      "
+      text="Campo obrigatório"></app-error-message>
+
+    <div class="container-input">
+      <input formControlName="number" type="number" placeholder="Número" />
+      <input
+        formControlName="complement"
+        type="text"
+        placeholder="Complemento" />
+    </div>
+
+    <input formControlName="city" type="text" placeholder="Cidade" />
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('city')?.errors?.['required'] &&
+        parentFormGroup.get(controlKey)?.get('city')?.touched
+      "
+      text="Campo obrigatório"></app-error-message>
+
+    <div class="container-input">
+      <div>
+        <select formControlName="state">
+          <option value="">UF</option>
+          <option *ngFor="let item of states" value="{{ item }}">
+            {{ item }}
+          </option>
+        </select>
+        <app-error-message
+          *ngIf="
+            parentFormGroup.get(controlKey)?.get('state')?.errors?.[
+              'required'
+            ] && parentFormGroup.get(controlKey)?.get('state')?.touched
+          "
+          text="Campo obrigatório"></app-error-message>
+      </div>
+
+      <div>
+        <input formControlName="postalCode" placeholder="CEP" />
+        <app-error-message
+          *ngIf="
+            parentFormGroup.get(controlKey)?.get('postalCode')?.errors?.[
+              'required'
+            ] && parentFormGroup.get(controlKey)?.get('postalCode')?.touched
+          "
+          text="Campo obrigatório"></app-error-message>
+        <app-error-message
+          *ngIf="
+            parentFormGroup.get(controlKey)?.get('postalCode')?.errors?.[
+              'pattern'
+            ] && parentFormGroup.get(controlKey)?.get('postalCode')?.touched
+          "
+          text="Formato de CEP inválido"></app-error-message>
+      </div>
+    </div>
+  </fieldset>
+</section>

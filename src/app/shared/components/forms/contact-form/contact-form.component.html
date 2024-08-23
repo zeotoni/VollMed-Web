@@ -1,0 +1,35 @@
+<section>
+  <fieldset [formGroupName]="controlKey">
+    <legend>{{ label }}</legend>
+    <input formControlName="email" type="email" placeholder="E-mail" />
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('email')?.errors?.['required'] &&
+        parentFormGroup.get(controlKey)?.get('email')?.touched
+      "
+      text="Campo obrigatório"></app-error-message>
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('email')?.errors?.['email'] &&
+        parentFormGroup.get(controlKey)?.get('email')?.touched
+      "
+      text="Formato de email inválido"></app-error-message>
+
+    <input
+      formControlName="phone"
+      type="tel"
+      placeholder="Telefone ou Celular" />
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('phone')?.errors?.['required'] &&
+        parentFormGroup.get(controlKey)?.get('phone')?.touched
+      "
+      text="Campo obrigatório"></app-error-message>
+    <app-error-message
+      *ngIf="
+        parentFormGroup.get(controlKey)?.get('phone')?.errors?.['pattern'] &&
+        parentFormGroup.get(controlKey)?.get('phone')?.touched
+      "
+      text="Formato de telefone inválido"></app-error-message>
+  </fieldset>
+</section>
