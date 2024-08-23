@@ -1,0 +1,45 @@
+<app-header [headerTitle]="'Novo perfil'"></app-header>
+<app-container>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Paciente</legend>
+      <input formControlName="name" type="text" placeholder="Nome Completo" />
+      <app-error-message
+        *ngIf="
+          form.get('name')?.errors?.['required'] && form.get('name')?.touched
+        "
+        text="Campo obrigatório"></app-error-message>
+      <app-error-message
+        *ngIf="
+          form.get('name')?.errors?.['minlength'] && form.get('name')?.touched
+        "
+        text="O nome precisa ser maior"></app-error-message>
+
+      <input formControlName="cpf" type="text" placeholder="CPF" />
+      <app-error-message
+        *ngIf="
+          form.get('cpf')?.errors?.['required'] && form.get('cpf')?.touched
+        "
+        text="Campo obrigatório"></app-error-message>
+      <app-error-message
+        *ngIf="form.get('cpf')?.errors?.['pattern'] && form.get('cpf')?.touched"
+        text="Formato de CPF inválido"></app-error-message>
+    </fieldset>
+
+    <app-contact-form controlKey="contact" label="Contato" />
+    <app-address-form controlKey="address" label="Endereço" />
+
+    <div class="container-button">
+      <app-button
+        text="Concluir cadastro"
+        [disabled]="!form.valid"
+        [style]="btnState()"></app-button>
+      <app-button
+        [style]="'secondary'"
+        [disabled]="false"
+        routerLink="/patients"
+        text="Cancelar"></app-button>
+    </div>
+  </form>
+</app-container>
+<app-modal-warning #modal [text]="modalText" />

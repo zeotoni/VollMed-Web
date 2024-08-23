@@ -1,0 +1,70 @@
+@import 'assets/scss/_base.scss';
+
+form {
+  padding: 20px 0;
+  margin: 0 auto;
+
+  fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    legend {
+      margin-bottom: 10px;
+      color: $primary-blue;
+      font-size: $fs-3;
+      font-style: normal;
+      font-weight: $fw-2;
+      line-height: 21.9px;
+    }
+
+    input,
+    select {
+      border-radius: 5px;
+      border: 1px solid $secondary-gray;
+      padding: 14px 16px;
+      background-color: $primary-white;
+      font-size: $fs-2;
+      font-style: normal;
+      font-weight: $fw-1;
+      line-height: 19.4px;
+      width: 100%;
+
+      &.ng-invalid.ng-touched {
+        border: 2px solid $red-warning;
+      }
+
+      &::placeholder {
+        color: $primary-black;
+        font-size: $fs-2;
+        font-style: normal;
+        font-weight: $fw-1;
+        line-height: 19.4px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: $bg-input-disable;
+        color: $font-gray;
+      }
+
+      & option {
+        color: $primary-black;
+        font-size: $fs-2;
+        font-style: normal;
+        font-weight: $fw-1;
+        line-height: 19.4px;
+      }
+    }
+  }
+
+  & .container-button {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
