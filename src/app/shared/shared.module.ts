@@ -10,7 +10,7 @@ import { AddressFormComponent } from './components/forms/address-form/address-fo
 import { ContactFormComponent } from './components/forms/contact-form/contact-form.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ModalDeactivationComponent } from './components/modal-deactivation/modal-deactivation.component';
-import { ModalWarningComponent } from './components/modal-warning/modal-warning.component';
+import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { ModalWarningComponent } from './components/modal-warning/modal-warning.
     ContainerComponent,
     HeaderComponent,
     ErrorMessageComponent,
-    ModalWarningComponent,
+    ModalInfoComponent,
     ModalDeactivationComponent,
     ContactFormComponent,
     AddressFormComponent,
@@ -29,7 +29,7 @@ import { ModalWarningComponent } from './components/modal-warning/modal-warning.
     ContainerComponent,
     HeaderComponent,
     ErrorMessageComponent,
-    ModalWarningComponent,
+    ModalInfoComponent,
     ModalDeactivationComponent,
     ContactFormComponent,
     AddressFormComponent,

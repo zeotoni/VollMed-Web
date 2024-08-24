@@ -1,15 +1,15 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-modal-warning',
-  templateUrl: './modal-warning.component.html',
-  styleUrls: ['./modal-warning.component.scss'],
+  selector: 'app-modal-info',
+  templateUrl: './modal-info.component.html',
+  styleUrls: ['./modal-info.component.scss'],
 })
-export class ModalWarningComponent {
+export class ModalInfoComponent {
   @Input() text!: string;
   @Input() title!: string;
 
-  @ViewChild('modalWarning') modal!: ElementRef;
+  @ViewChild('modalInfo') modal!: ElementRef;
 
   nativeElement: HTMLElement;
 
