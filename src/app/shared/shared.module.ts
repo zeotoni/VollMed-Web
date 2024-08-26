@@ -12,6 +12,9 @@ import { ContactFormComponent } from './components/forms/contact-form/contact-fo
 import { HeaderComponent } from './components/header/header.component';
 import { ModalDeactivationComponent } from './components/modal-deactivation/modal-deactivation.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
+import { CpfPipe } from './pipes/cpf.pipe';
+import { PhonePipe } from './pipes/phone.pipe';
+import { PostalCodePipe } from './pipes/postal-code.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ModalInfoComponent } from './components/modals/modal-info/modal-info.co
     ContactFormComponent,
     AddressFormComponent,
     CardProfileComponent,
+    CpfPipe,
+    PhonePipe,
+    PostalCodePipe,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
@@ -36,6 +42,9 @@ import { ModalInfoComponent } from './components/modals/modal-info/modal-info.co
     ContactFormComponent,
     AddressFormComponent,
     CardProfileComponent,
+    CpfPipe,
+    PhonePipe,
+    PostalCodePipe,
   ],
 })
 export class SharedModule {}
