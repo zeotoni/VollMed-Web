@@ -1,0 +1,30 @@
+<div class="card">
+  <details>
+    <summary>
+      <div>
+        <h3>{{ profile.name }}</h3>
+        <p *ngIf="profile.crm">
+          {{ profile.specialty }} | CRM {{ profile.crm }}-{{
+            profile.address.state
+          }}
+        </p>
+        <p *ngIf="profile.cpf">{{ profile.cpf }}</p>
+      </div>
+    </summary>
+
+    <div>
+      <p>{{ profile.contact.email }}</p>
+      <p>{{ profile.contact.phone }}</p>
+    </div>
+
+    <div class="address">
+      <p>{{ profile.address.street }}, {{ profile.address.number }}</p>
+      <p>{{ profile.address.city }}/{{ profile.address.state }}</p>
+      <p>CEP: {{ profile.address.postalCode }}</p>
+      <div class="actions">
+        <button (click)="edit()">Editar</button>
+        <button (click)="deactivate()">Desativar perfil</button>
+      </div>
+    </div>
+  </details>
+</div>
