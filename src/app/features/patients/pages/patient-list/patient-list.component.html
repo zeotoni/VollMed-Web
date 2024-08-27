@@ -1,0 +1,25 @@
+<app-header [headerTitle]="'Médicos'"></app-header>
+<section>
+  <app-container>
+    <input type="text" placeholder="Pesquisar" aria-label="Pesquisar" />
+    <div class="list">
+      <div *ngFor="let item of patientList$">
+        <div class="cards" *ngIf="item.profiles.length">
+          <div class="cards__header">
+            <span>{{ item.letter }}</span>
+            <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
+          </div>
+          <div *ngFor="let patient of item.profiles">
+            <app-card-profile [profile]="patient"></app-card-profile>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <app-button
+        text="Cadastrar novo perfil"
+        [disabled]="false"
+        routerLink="register"></app-button>
+    </div>
+  </app-container>
+</section>

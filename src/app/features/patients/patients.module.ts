@@ -5,9 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { PatientRegisterComponent } from './pages/patient-register/patient-register.component';
 import { PatientsRoutingModule } from './patients-routing.module';
+import { PatientListComponent } from './pages/patient-list/patient-list.component';
 
 @NgModule({
-  declarations: [PatientRegisterComponent],
+  declarations: [PatientRegisterComponent, PatientListComponent],
   imports: [
     CommonModule,
     SharedModule,

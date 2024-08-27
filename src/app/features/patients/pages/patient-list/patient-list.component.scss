@@ -1,0 +1,61 @@
+@import 'assets/scss/_base.scss';
+
+section {
+  padding: 32px 0;
+
+  input {
+    border-radius: 5px;
+    border: 1px solid $secondary-gray;
+    padding: 14px 16px;
+    background-color: $primary-white;
+    font-size: $fs-2;
+    font-style: normal;
+    font-weight: $fw-1;
+    line-height: 19.4px;
+    width: 100%;
+    background-image: url('assets/images/lupa.svg');
+    background-repeat: no-repeat;
+    background-position: 98%;
+
+    &::placeholder {
+      color: $primary-black;
+      font-size: $fs-2;
+      font-style: normal;
+      font-weight: $fw-1;
+      line-height: 19.4px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .list {
+    padding: 32px 0 90px;
+
+    .cards {
+      padding-bottom: 32px;
+
+      &__header {
+        span {
+          font-size: $fs-3;
+          font-weight: $fw-2;
+          line-height: 21.9px;
+          margin-right: 10px;
+          color: $blue-logo;
+        }
+      }
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+    left: 0;
+    padding: 20px 16px;
+    box-shadow: 0px -4px 8px 0px $box-shadow-gray;
+    background-color: $primary-white;
+  }
+}
