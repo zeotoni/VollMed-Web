@@ -9,6 +9,15 @@ export interface Patient {
   address: Address;
 }
 
+export interface PatientEdit {
+  id: string;
+  name: string;
+  contact: {
+    phone: string;
+  };
+  address: Address;
+}
+
 export interface PatientList {
   content: Patient[];
   pageable: {

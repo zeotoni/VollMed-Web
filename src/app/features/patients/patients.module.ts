@@ -3,12 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
+import { PatientEditComponent } from './pages/patient-edit/patient-edit.component';
+import { PatientListComponent } from './pages/patient-list/patient-list.component';
 import { PatientRegisterComponent } from './pages/patient-register/patient-register.component';
 import { PatientsRoutingModule } from './patients-routing.module';
-import { PatientListComponent } from './pages/patient-list/patient-list.component';
 
 @NgModule({
-  declarations: [PatientRegisterComponent, PatientListComponent],
+  declarations: [
+    PatientRegisterComponent,
+    PatientListComponent,
+    PatientEditComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment.development';
 import { map, Observable } from 'rxjs';
-import { Patient, PatientList } from '../models/patient';
+import { Patient, PatientEdit, PatientList } from '../models/patient';
 
 @Injectable({ providedIn: 'root' })
 export class PatientService {
@@ -18,5 +18,13 @@ export class PatientService {
     return this.http
       .get<PatientList>(`${this.apiUrl}/patients`)
       .pipe(map((list) => list.content));
+  }
+
+  getPatientById(id: number): Observable<Patient> {
+    return this.http.get<Patient>(`${this.apiUrl}/patients/${id}`);
+  }
+
+  updatePatient(data: PatientEdit): Observable<Patient> {
+    return this.http.put<Patient>(`${this.apiUrl}/patients`, data);
   }
 }

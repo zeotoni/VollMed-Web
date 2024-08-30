@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileCard } from 'app/shared/models/profile-card';
 
 @Component({
@@ -9,8 +10,15 @@ import { ProfileCard } from 'app/shared/models/profile-card';
 export class CardProfileComponent {
   @Input() profile!: ProfileCard;
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+
   edit() {
-    throw new Error('Method not implemented.');
+    this.router.navigate([`edit`, this.profile.id], {
+      relativeTo: this.route,
+    });
   }
 
   deactivate() {
