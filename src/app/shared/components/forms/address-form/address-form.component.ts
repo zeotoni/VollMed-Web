@@ -1,11 +1,7 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  ControlContainer,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { ControlContainer, FormGroup } from '@angular/forms';
 import { State } from 'app/shared/models/state';
+import { AddressFormService } from './../../../services/address-form.service';
 
 @Component({
   selector: 'app-address-form',
@@ -25,21 +21,11 @@ export class AddressFormComponent implements OnInit, OnDestroy {
   parentContainer = inject(ControlContainer);
   states = Object.values(State).filter((value) => typeof value === 'string');
 
+  constructor(private addressFormService: AddressFormService) {}
+
   ngOnInit(): void {
-    this.parentFormGroup.addControl(
-      this.controlKey,
-      new FormGroup({
-        street: new FormControl('', [Validators.required]),
-        number: new FormControl(''),
-        complement: new FormControl(''),
-        city: new FormControl('', [Validators.required]),
-        state: new FormControl('', [Validators.required]),
-        postalCode: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^\d{8}$/),
-        ]),
-      }),
-    );
+    const addressForm = this.addressFormService.createAddressForm();
+    this.parentFormGroup.setControl(this.controlKey, addressForm);
   }
 
   ngOnDestroy() {

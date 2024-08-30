@@ -1,10 +1,6 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  ControlContainer,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { ControlContainer, FormGroup } from '@angular/forms';
+import { ContactFormService } from 'app/shared/services/contact-form.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -23,17 +19,11 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   parentContainer = inject(ControlContainer);
 
+  constructor(private contactFormService: ContactFormService) {}
+
   ngOnInit(): void {
-    this.parentFormGroup.addControl(
-      this.controlKey,
-      new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        phone: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^\d{10,11}$/),
-        ]),
-      }),
-    );
+    const contactForm = this.contactFormService.createContactForm();
+    this.parentFormGroup.setControl(this.controlKey, contactForm);
   }
 
   ngOnDestroy() {
