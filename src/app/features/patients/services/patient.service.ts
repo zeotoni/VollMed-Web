@@ -32,4 +32,8 @@ export class PatientService {
   updatePatient(data: PatientEdit): Observable<Patient> {
     return this.http.put<Patient>(`${this.apiUrl}/patients`, data);
   }
+
+  deletePatient(id: number): Observable<PatientList> {
+    return this.http.delete<PatientList>(`${this.apiUrl}/patients/${id}`);
+  }
 }

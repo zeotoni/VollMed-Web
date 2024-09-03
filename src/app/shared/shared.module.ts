@@ -10,7 +10,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
 import { AddressFormComponent } from './components/forms/address-form/address-form.component';
 import { ContactFormComponent } from './components/forms/contact-form/contact-form.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ModalDeactivationComponent } from './components/modal-deactivation/modal-deactivation.component';
+import { ModalDeactivationComponent } from './components/modals/modal-deactivation/modal-deactivation.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 import { CpfPipe } from './pipes/cpf.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
