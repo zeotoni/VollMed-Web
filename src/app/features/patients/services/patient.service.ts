@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment.development';
 import { map, Observable } from 'rxjs';
-import { Patient, PatientEdit, PatientList } from '../models/patient';
+import {
+  PaginatedPatientResponse,
+  Patient,
+  PatientEdit,
+  PatientList,
+} from '../models/patient';
 
 @Injectable({ providedIn: 'root' })
 export class PatientService {
@@ -14,9 +19,9 @@ export class PatientService {
     return this.http.post<Patient>(`${this.apiUrl}/patients`, data);
   }
 
-  getPatientList(): Observable<Patient[]> {
+  getPatientList(): Observable<PatientList[]> {
     return this.http
-      .get<PatientList>(`${this.apiUrl}/patients`)
+      .get<PaginatedPatientResponse>(`${this.apiUrl}/patients`)
       .pipe(map((list) => list.content));
   }
 

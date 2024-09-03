@@ -7,10 +7,20 @@ export interface Patient {
   cpf: string;
   contact: Contact;
   address: Address;
+  profileType?: string;
+}
+
+export interface PatientList {
+  id: number;
+  name: string;
+  cpf: string;
+  contact: Contact;
+  address: Address;
+  profileType: string;
 }
 
 export interface PatientEdit {
-  id: string;
+  id: number;
   name: string;
   contact: {
     phone: string;
@@ -18,8 +28,8 @@ export interface PatientEdit {
   address: Address;
 }
 
-export interface PatientList {
-  content: Patient[];
+export interface PaginatedPatientResponse {
+  content: PatientList[];
   pageable: {
     pageNumber: number;
     pageSize: number;
