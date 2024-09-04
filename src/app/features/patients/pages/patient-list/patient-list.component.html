@@ -1,9 +1,14 @@
 <app-header [headerTitle]="'Médicos'"></app-header>
 <section>
   <app-container>
-    <input type="text" placeholder="Pesquisar" aria-label="Pesquisar" />
+    <input
+      type="text"
+      placeholder="Pesquisar"
+      aria-label="Pesquisar"
+      #inputSearch
+      (keyup)="updateFilter(inputSearch.value)" />
     <div class="list">
-      <div *ngFor="let item of patientList$">
+      <div *ngFor="let item of patientList$ | filterByName: filter">
         <div class="cards" *ngIf="item.profiles.length">
           <div class="cards__header">
             <span>{{ item.letter }}</span>

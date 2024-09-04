@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ModalDeactivationComponent } from './components/modals/modal-deactivation/modal-deactivation.component';
 import { ModalInfoComponent } from './components/modals/modal-info/modal-info.component';
 import { CpfPipe } from './pipes/cpf.pipe';
+import { FilterByName } from './pipes/filter-by-name.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
 import { PostalCodePipe } from './pipes/postal-code.pipe';
 
@@ -30,6 +31,7 @@ import { PostalCodePipe } from './pipes/postal-code.pipe';
     CpfPipe,
     PhonePipe,
     PostalCodePipe,
+    FilterByName,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
@@ -45,6 +47,7 @@ import { PostalCodePipe } from './pipes/postal-code.pipe';
     CpfPipe,
     PhonePipe,
     PostalCodePipe,
+    FilterByName,
   ],
 })
 export class SharedModule {}
