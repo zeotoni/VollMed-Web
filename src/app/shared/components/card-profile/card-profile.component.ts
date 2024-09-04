@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileCard } from 'app/shared/models/profile-card';
 
@@ -9,6 +9,7 @@ import { ProfileCard } from 'app/shared/models/profile-card';
 })
 export class CardProfileComponent {
   @Input() profile!: ProfileCard;
+  @ViewChild('modalDeactivation') modal!: ElementRef;
 
   constructor(
     private router: Router,
@@ -21,7 +22,7 @@ export class CardProfileComponent {
     });
   }
 
-  deactivate() {
-    throw new Error('Method not implemented.');
+  deactivate(): void {
+    this.modal.nativeElement.firstChild.showModal();
   }
 }

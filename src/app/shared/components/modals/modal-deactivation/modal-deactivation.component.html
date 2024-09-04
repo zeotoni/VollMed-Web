@@ -5,12 +5,13 @@
     <div class="dialog__header-info">
       <div class="bar"></div>
       <div>
-        <span>{{ doctor.name }}</span>
-        <p>
-          {{ doctor.specialty }} | CRM {{ doctor.crm }}-{{
-            doctor.address.state
+        <span>{{ profile.name }}</span>
+        <p *ngIf="profile.crm">
+          {{ profile.specialty }} | CRM {{ profile.crm }}-{{
+            profile.address.state
           }}
         </p>
+        <p *ngIf="profile.cpf">{{ profile.cpf | cpf }}</p>
       </div>
     </div>
   </div>
@@ -36,4 +37,4 @@
       (click)="closeModal()"></app-button>
   </div>
 </dialog>
-<app-modal-warning [title]="modalTitle" [text]="modalText" #modalWarning />
+<app-modal-info [title]="modalTitle" [text]="modalText" #modalInfo />
