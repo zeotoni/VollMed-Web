@@ -9,7 +9,7 @@ import { ProfileCard } from 'app/shared/models/profile-card';
 })
 export class CardProfileComponent {
   @Input() profile!: ProfileCard;
-  @ViewChild('modalDeactivation') modal!: ElementRef;
+  @ViewChild('deactivationModal') modal!: ElementRef;
 
   constructor(
     private router: Router,

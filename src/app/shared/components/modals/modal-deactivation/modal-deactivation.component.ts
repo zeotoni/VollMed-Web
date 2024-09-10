@@ -14,7 +14,8 @@ export class ModalDeactivationComponent {
   modalText!: string;
 
   @ViewChild('modalInfo') modalInfo!: ElementRef;
-  @ViewChild('modalDeactivation') modalDeactivation!: ElementRef;
+  @ViewChild('modalDeactivation') deactivationModal!: ElementRef;
+
   nativeElement: HTMLElement;
 
   constructor(
@@ -51,6 +52,6 @@ export class ModalDeactivationComponent {
   }
 
   closeModal(): void {
-    this.modalDeactivation.nativeElement.close();
+    this.deactivationModal.nativeElement.close();
   }
 }
