@@ -1,10 +1,21 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ProfileCard } from '../models/profile-card';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileListingService {
+  private listProfileSubject = new BehaviorSubject<ProfileCard[]>([]);
+
+  setUpdatedList(list: ProfileCard[]) {
+    this.listProfileSubject.next(list);
+  }
+
+  getUpdatedList(): Observable<ProfileCard[]> {
+    return this.listProfileSubject.asObservable();
+  }
+
   listJoinedByLetter(list: ProfileCard[]) {
     const groupedProfiles: { letter: string; profiles: ProfileCard[] }[] = [];
     const groupedMap = new Map<string, ProfileCard[]>();

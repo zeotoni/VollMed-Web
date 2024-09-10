@@ -1,6 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProfileCard } from 'app/shared/models/profile-card';
-import { debounceTime, map, Observable, Subject, Subscription } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  Observable,
+  of,
+  Subject,
+  Subscription,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { PatientService } from '../../services/patient.service';
 import { ProfileListingService } from './../../../../shared/services/profile-listing.service';
 
@@ -27,9 +36,18 @@ export class PatientListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.patientList$ = this.patientService
-      .getPatientList()
-      .pipe(map((list) => this.profileListingService.listJoinedByLetter(list)));
+    this.patientList$ = this.profileListingService.getUpdatedList().pipe(
+      switchMap((cachedList) =>
+        cachedList.length > 0
+          ? of(cachedList)
+          : this.patientService
+              .getPatientList()
+              .pipe(
+                tap((list) => this.profileListingService.setUpdatedList(list)),
+              ),
+      ),
+      map((list) => this.profileListingService.listJoinedByLetter(list)),
+    );
   }
 
   updateFilter(filterValue: string): void {

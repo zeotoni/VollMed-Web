@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AddressFormService } from 'app/shared/services/address-form.service';
+import { ProfileListingService } from 'app/shared/services/profile-listing.service';
+import { switchMap, tap } from 'rxjs';
 import { PatientEdit } from '../../models/patient';
 import { ContactFormService } from './../../../../shared/services/contact-form.service';
 import { PatientService } from './../../services/patient.service';
@@ -25,6 +27,7 @@ export class PatientEditComponent implements OnInit {
 
   constructor(
     private patientService: PatientService,
+    private profileListingService: ProfileListingService,
     private contactFormService: ContactFormService,
     private addressFormService: AddressFormService,
     private route: ActivatedRoute,
@@ -58,17 +61,25 @@ export class PatientEditComponent implements OnInit {
         ...this.form.value,
       };
 
-      this.patientService.updatePatient(updatedData).subscribe({
-        next: () => {
-          this.modalText = 'Dados atualizados com sucesso!';
-          this.openModal();
-        },
-        error: () => {
-          this.modalTitle = 'Não foi possível atualizar esse perfil';
-          this.modalText = 'Ocorreu um erro,tente novamente mais tarde!';
-          this.openModal();
-        },
-      });
+      this.patientService
+        .updatePatient(updatedData)
+        .pipe(
+          switchMap(() => this.patientService.getPatientList()),
+          tap((patients) =>
+            this.profileListingService.setUpdatedList(patients),
+          ),
+        )
+        .subscribe({
+          next: () => {
+            this.modalText = 'Dados atualizados com sucesso!';
+            this.openModal();
+          },
+          error: () => {
+            this.modalTitle = 'Não foi possível atualizar esse perfil';
+            this.modalText = 'Ocorreu um erro,tente novamente mais tarde!';
+            this.openModal();
+          },
+        });
     }
   }
 
