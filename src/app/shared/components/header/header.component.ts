@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,7 +9,9 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
   @Input() headerTitle!: string;
 
-  showSelect(): void {
-    console.log('oi');
+  constructor(private location: Location) {}
+
+  goBack() {
+    this.location.back();
   }
 }
