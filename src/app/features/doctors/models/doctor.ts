@@ -1,14 +1,15 @@
 import { Address } from 'app/shared/models/address';
+import { Contact } from 'app/shared/models/contact';
 import { Specialty } from './specialty';
 
 export interface Doctor {
   id?: number;
   name: string;
   crm: string;
-  email: string;
-  phone: string;
   specialty: Specialty;
+  contact: Contact;
   address: Address;
+  profileType?: string;
 }
 
 export interface DoctorEdit {

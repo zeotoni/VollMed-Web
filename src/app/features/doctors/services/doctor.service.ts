@@ -17,7 +17,7 @@ export class DoctorService {
 
   constructor(private http: HttpClient) {}
 
-  register(data: Doctor): Observable<Doctor> {
+  registerDoctor(data: Doctor): Observable<Doctor> {
     return this.http.post<Doctor>(`${this.apiUrl}/doctors`, data);
   }
 
