@@ -7,15 +7,15 @@
       aria-label="Pesquisar"
       #inputSearch
       (keyup)="updateFilter(inputSearch.value)" />
-    <div class="list">
-      <div *ngFor="let item of doctorList$ | filterByName: filter">
-        <div class="cards" *ngIf="item.doctors.length">
+    <div class="list" *ngIf="doctorList$ | async as doctorList">
+      <div *ngFor="let item of doctorList | filterByName: filter">
+        <div class="cards" *ngIf="item.profiles.length">
           <div class="cards__header">
             <span>{{ item.letter }}</span>
             <img src="assets/images/logo-card.svg" alt="logo da vollmed" />
           </div>
-          <div *ngFor="let doctor of item.doctors">
-            <app-card-doctor [doctor]="doctor"></app-card-doctor>
+          <div *ngFor="let doctor of item.profiles">
+            <app-card-profile [profile]="doctor"></app-card-profile>
           </div>
         </div>
       </div>

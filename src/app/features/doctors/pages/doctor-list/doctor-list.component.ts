@@ -1,9 +1,18 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { DoctorListService } from 'app/features/doctors/services/doctor-list.service';
-
-import { Subject, Subscription, debounceTime } from 'rxjs';
-import { Doctor } from '../../models/doctor';
+import { ProfileCard } from 'app/shared/models/profile-card';
+import { ProfileListingService } from 'app/shared/services/profile-listing.service';
+import {
+  Observable,
+  Subject,
+  Subscription,
+  debounceTime,
+  map,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
+import { DoctorListingService } from '../../services/doctor-listing.service';
 import { DoctorService } from '../../services/doctor.service';
 
 @Component({
@@ -11,42 +20,44 @@ import { DoctorService } from '../../services/doctor.service';
   templateUrl: './doctor-list.component.html',
   styleUrls: ['./doctor-list.component.scss'],
 })
-export class DoctorListComponent implements OnInit, AfterViewInit {
-  doctorList$!: { letter: string; doctors: Doctor[] }[];
-  subscriptionDoctorList!: Subscription;
+export class DoctorListComponent implements OnInit, OnDestroy {
+  doctorList$!: Observable<{ letter: string; profiles: ProfileCard[] }[]>;
   filter!: string;
-  page = 0;
   private searchTerm$ = new Subject<string>();
+  private searchTermSubscription!: Subscription;
 
   constructor(
     private doctorService: DoctorService,
-    private doctorListService: DoctorListService,
+    private doctorListingService: DoctorListingService,
+    private profileListingService: ProfileListingService,
   ) {
-    this.searchTerm$.pipe(debounceTime(300)).subscribe((value) => {
-      this.filter = value;
-    });
+    this.searchTermSubscription = this.searchTerm$
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.filter = value;
+      });
   }
 
   ngOnInit(): void {
-    this.doctorService.getDoctorList(this.page).subscribe((list) => {
-      this.doctorList$ = this.doctorListService.listJoinedByLetter(list);
-    });
-  }
-
-  ngAfterViewInit(): void {
-    this.subscriptionDoctorList = this.doctorListService
-      .getUpdatedList()
-      .subscribe({
-        next: (list) => {
-          this.doctorList$ = this.doctorListService.listJoinedByLetter(list);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    this.doctorList$ = this.doctorListingService.getUpdatedList().pipe(
+      switchMap((cachedList) =>
+        cachedList.length > 0
+          ? of(cachedList)
+          : this.doctorService
+              .getDoctorList()
+              .pipe(
+                tap((list) => this.doctorListingService.setUpdatedList(list)),
+              ),
+      ),
+      map((list) => this.profileListingService.listJoinedByLetter(list)),
+    );
   }
 
   updateFilter(filterValue: string): void {
     this.searchTerm$.next(filterValue);
+  }
+
+  ngOnDestroy(): void {
+    this.searchTermSubscription.unsubscribe();
   }
 }

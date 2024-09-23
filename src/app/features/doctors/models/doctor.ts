@@ -12,6 +12,16 @@ export interface Doctor {
   profileType?: string;
 }
 
+export interface DoctorList {
+  id: number;
+  name: string;
+  crm: string;
+  specialty: Specialty;
+  contact: Contact;
+  address: Address;
+  profileType: string;
+}
+
 export interface DoctorEdit {
   id?: number;
   name: string;
@@ -19,8 +29,8 @@ export interface DoctorEdit {
   address: Address;
 }
 
-export interface DoctorList {
-  content: Doctor[];
+export interface PaginatedDoctorResponse {
+  content: DoctorList[];
   pageable: {
     pageNumber: number;
     pageSize: number;

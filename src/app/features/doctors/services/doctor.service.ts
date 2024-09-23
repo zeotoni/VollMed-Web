@@ -4,6 +4,7 @@ import {
   Doctor,
   DoctorEdit,
   DoctorList,
+  PaginatedDoctorResponse,
 } from 'app/features/doctors/models/doctor';
 
 import { environment } from 'environments/environment.development';
@@ -21,9 +22,9 @@ export class DoctorService {
     return this.http.post<Doctor>(`${this.apiUrl}/doctors`, data);
   }
 
-  getDoctorList(page: number): Observable<Doctor[]> {
+  getDoctorList(): Observable<DoctorList[]> {
     return this.http
-      .get<DoctorList>(`${this.apiUrl}/doctors${`?page=`}${page}`)
+      .get<PaginatedDoctorResponse>(`${this.apiUrl}/doctors`)
       .pipe(map((list) => list.content));
   }
 
