@@ -32,17 +32,11 @@ export class DoctorService {
     return this.http.get<Doctor>(`${this.apiUrl}/doctors/${id}`);
   }
 
-  editDoctor(data: DoctorEdit): Observable<DoctorEdit> {
-    return this.http.put<DoctorEdit>(`${this.apiUrl}/doctors`, data);
+  updateDoctor(data: DoctorEdit): Observable<Doctor> {
+    return this.http.put<Doctor>(`${this.apiUrl}/doctors`, data);
   }
 
   deleteDoctor(id: number | undefined): Observable<Doctor> {
     return this.http.delete<Doctor>(`${this.apiUrl}/doctors/${id}`);
-  }
-
-  getByName(name: string): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(
-      `${this.apiUrl}/doctors/search?name=${name}`,
-    );
   }
 }

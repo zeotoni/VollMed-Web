@@ -23,9 +23,11 @@ export interface DoctorList {
 }
 
 export interface DoctorEdit {
-  id?: number;
+  id: number;
   name: string;
-  phone: string;
+  contact: {
+    phone: string;
+  };
   address: Address;
 }
 

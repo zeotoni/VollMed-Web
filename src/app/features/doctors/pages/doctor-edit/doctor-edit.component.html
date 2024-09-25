@@ -1,5 +1,66 @@
 <app-header [headerTitle]="'Editar'"></app-header>
-<app-form
-  [btnText]="'Concluir Edição'"
-  (doctorData)="onSubmit($event)"></app-form>
-<app-modal-warning #modal [title]="modalTitle" [text]="modalText" />
+<app-container>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Profissional</legend>
+      <input formControlName="name" type="text" placeholder="Nome Completo" />
+      <app-error-message
+        *ngIf="
+          form.get('name')?.errors?.['required'] && form.get('name')?.touched
+        "
+        text="Campo obrigatório"></app-error-message>
+      <app-error-message
+        *ngIf="
+          form.get('name')?.errors?.['minlength'] && form.get('name')?.touched
+        "
+        text="O nome precisar ser maior"></app-error-message>
+
+      <div class="container-input">
+        <div>
+          <select formControlName="specialty">
+            <option value="">Especialidade</option>
+            <option *ngFor="let item of specialties" value="{{ item }}">
+              {{ item }}
+            </option>
+          </select>
+          <app-error-message
+            *ngIf="
+              form.get('specialty')?.errors?.['required'] &&
+              form.get('specialty')?.touched
+            "
+            text="Campo obrigatório"></app-error-message>
+        </div>
+
+        <div>
+          <input formControlName="crm" placeholder="CRM" />
+          <app-error-message
+            *ngIf="
+              form.get('crm')?.errors?.['required'] && form.get('crm')?.touched
+            "
+            text="Campo obrigatório"></app-error-message>
+          <app-error-message
+            *ngIf="
+              form.get('crm')?.errors?.['pattern'] && form.get('crm')?.touched
+            "
+            text="O crm deve ter entre 4 a 6 dígitos"></app-error-message>
+        </div>
+      </div>
+    </fieldset>
+
+    <app-contact-form controlKey="contact" label="Contato" />
+    <app-address-form controlKey="address" label="Endereço" />
+
+    <div class="container-button">
+      <app-button
+        text="Concluir cadastro"
+        [disabled]="!form.valid"
+        [style]="btnState()"></app-button>
+      <app-button
+        [style]="'secondary'"
+        [disabled]="false"
+        routerLink="/doctors"
+        text="Cancelar"></app-button>
+    </div>
+  </form>
+</app-container>
+<app-modal-info #modal [text]="modalText" />
